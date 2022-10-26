@@ -11,6 +11,15 @@ button.addEventListener("click", function (event) {
 
 });
 
+chartBtn.addEventListener("click", function handleclick() {
+    var lineChart = document.getElementById("myChart");
+    if (lineChart.style.display === "none") {
+        lineChart.style.display = "block";
+    } else {
+        lineChart.style.display = "none";
+    }
+})
+
 var predictedMood;
 var food = $(inputFood);
 var fitness = $(inputFitness);
@@ -34,11 +43,3 @@ if (predictedValue < 0.35) {
 }
 
 
-chartBtn.addEventListener("click", function handleclick() {
-    var lineChart = document.getElementById("myChart");
-    if (lineChart.style.display === "none") {
-        lineChart.style.display = "block";
-    } else {
-        lineChart.style.display = "none";
-    }
-})
