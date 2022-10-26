@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +25,17 @@
     Yes <input type="checkbox" name="name" id="name">
     No <input type="checkbox" name="name" id="name">
     <br><br>
-    <button id="submit">Submit</button>
+    <button id="submit">Submit</button><br><br>
+    <div id="results">
+        <p>URL:<a href="" id="url"></a></p>
+        <p>Source:<span id="source"></span></p><br><br>
+    </div>
         
-    <script src="./script.js"></script>
+    <button id="chartBtn">Chart</button>
+    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+
+    <script src="./assets/js/script.js"></script>
+    <script type="text/javascript", src="./assets/js/graph.js"></script>
+    <script> src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"</script>
 </body>
 </html>
