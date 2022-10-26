@@ -3,6 +3,7 @@ var inputEmail = document.getElementById("email");
 var button = document.getElementById("submit");
 var chartBtn = document.getElementById("chartBtn");
 var chartRBtn = document.getElementById("chartRBtn");
+var clearBtn = document.getElementById("clearStorage");
 
 
 
@@ -85,6 +86,10 @@ chartRBtn.addEventListener("click", function handleclick() {
     }
 })
 
+clearBtn.addEventListener("click", function handleclick() {
+    localStorage.clear();
+})
+
 // var predictedMood;
 // var food = $(inputFood);
 // var fitness = $(inputFitness);
@@ -108,7 +113,9 @@ chartRBtn.addEventListener("click", function handleclick() {
 // }
 
 //This body of code will store user values in local storage.
-storedValues(1, 2, 3, 4);
+storedValues(54, 13, 15, 41);
+storedValues(5, 8, 2, 10);
+storedValues(14, 2, 29, 45);
 function storedValues(foodValue, fitnessValue, sleepValue, moodValue) {
     var valuesArry = [];
     var retrievedValues = localStorage.getItem("all-values");
@@ -140,5 +147,7 @@ function storedValues(foodValue, fitnessValue, sleepValue, moodValue) {
     console.log(inputValue.fitnessKey);
     console.log(inputValue.sleepKey);
     console.log(inputValue.moodKey);
-
+    addData(inputValue.foodKey, inputValue.fitnessKey, inputValue.sleepKey, inputValue.moodKey);
+    addToRadar(inputValue.moodKey, inputValue.sleepKey, inputValue.foodKey, inputValue.fitnessKey);
 }
+

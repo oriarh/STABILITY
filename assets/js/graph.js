@@ -1,4 +1,4 @@
-var xValues = [100,200,300,400,500,600,700,800,900,1000];
+var xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 var myChart = document.getElementById('myChart').getContext('2d');
 
 var myChart = new Chart("myChart", {
@@ -6,16 +6,20 @@ var myChart = new Chart("myChart", {
   data: {
     labels: xValues,
     datasets: [{
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      data: [],
       borderColor: "red",
       fill: false
     },{
-      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+      data2: [],
       borderColor: "green",
       fill: false
     },{
-      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      data: [],
       borderColor: "blue",
+      fill: false
+    },{
+      data: [],
+      borderColor: "purple",
       fill: false
     }]
   },
@@ -24,7 +28,7 @@ var myChart = new Chart("myChart", {
   }
 });
 
-var xValuesR = [100,200,300,400,500,600,700,800,900,1000];
+var xValuesR = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 var myChartR = document.getElementById('myChartR').getContext('2d');
 
 var myChartR = new Chart("myChartR", {
@@ -32,21 +36,63 @@ var myChartR = new Chart("myChartR", {
 data: {
   labels: xValuesR,
   datasets: [{
-    data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-    borderColor: "red",
-    fill: false
-  },{
-    data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-    borderColor: "green",
-    fill: false
-  },{
-    data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
-    borderColor: "blue",
-    fill: true, 
-    backgroundColor: "rgba(0, 5, 248, 0.2)"
+    data: [],
+    fill: true,
+    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+    borderColor: 'rgb(255, 99, 132)',
+    pointBackgroundColor: 'rgb(255, 99, 132)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(255, 99, 132)'
+  }, {
+    data: [],
+    fill: true,
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: 'rgb(54, 162, 235)',
+    pointBackgroundColor: 'rgb(54, 162, 235)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(54, 162, 235)'
+  }, {
+    data: [],
+    fill: true,
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: 'rgb(54, 162, 235)',
+    pointBackgroundColor: 'rgb(54, 162, 235)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(54, 162, 235)'
+  }, {
+    data: [],
+    fill: true,
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: 'rgb(54, 162, 235)',
+    pointBackgroundColor: 'rgb(54, 162, 235)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(54, 162, 235)'
   }]
 },
 options: {
   legend: {display: false}
 }
 });
+
+function addData(foodVal, fitnessVal, sleepVal, moodVal) {
+  myChart.data.datasets[0].data.push(foodVal);
+  myChart.data.datasets[1].data.push(fitnessVal);
+  myChart.data.datasets[2].data.push(sleepVal);
+  myChart.data.datasets[3].data.push(moodVal);  
+  
+  myChart.update();
+}
+
+function addToRadar(foodVal, fitnessVal, sleepVal, moodVal) {
+  myChartR.data.datasets[0].data.push(foodVal);
+  myChartR.data.datasets[1].data.push(fitnessVal);
+  myChartR.data.datasets[2].data.push(sleepVal);
+  myChartR.data.datasets[3].data.push(moodVal);
+  
+  myChartR.update();
+}
+
