@@ -6,7 +6,7 @@ var chartRBtn = document.getElementById("chartRBtn");
 
 
 
-
+// This function is commented out because we have only a limited number of quotes we can generate.
 // button.addEventListener("click", function (event) {
 //     console.log(inputName.value);
 //     //resources(wellnessResources);
@@ -65,6 +65,7 @@ function generateQuote() {
         .catch(err => console.error(err));
 }
 
+//This event listener displays the line chart when the button is clicked
 chartBtn.addEventListener("click", function handleclick() {
     var lineChart = document.getElementById("myChart");
     if (lineChart.style.display === "none") {
@@ -74,6 +75,7 @@ chartBtn.addEventListener("click", function handleclick() {
     }
 })
 
+//This button displays the radar chart when clicked.
 chartRBtn.addEventListener("click", function handleclick() {
     var radarChart = document.getElementById("myChartR");
     if (radarChart.style.display === "none") {
@@ -83,25 +85,60 @@ chartRBtn.addEventListener("click", function handleclick() {
     }
 })
 
-var predictedMood;
-var food = $(inputFood);
-var fitness = $(inputFitness);
-var sleep = $(inputSleep);
-var Mood = $(inputMood);
-let coefFood = [0.25, 0.75];
-let coefFitness = [0.25, 0.75];
-let coatSleep = [0.25, 0.75];
-let coefMood = [0.25, 0.5, 0.75];
-let resultFood = food * coefFood[placeHolder];
-let resultFitness = fitness * coeffitness[placeHolder];
-let resultsleep = sleep * coefDleep[placeHolder];
-let resultMood = Mood * coefMood[placeHolder];
-let predictedValue = resultFood + resultFitness + resultMood + resultSleep;
-if (predictedValue < 0.35) {
-    predictedMood = 'Bad';
-} else if (predictedValue < 0.55 && predictedValue >= 0.35) {
-    predictedMood = 'Decent';
-} else if (predictedValue > 0.55) {
-    predictedMood = 'Good ';
-}
+// var predictedMood;
+// var food = $(inputFood);
+// var fitness = $(inputFitness);
+// var sleep = $(inputSleep);
+// var Mood = $(inputMood);
+// let coefFood = [0.25, 0.75];
+// let coefFitness = [0.25, 0.75];
+// let coatSleep = [0.25, 0.75];
+// let coefMood = [0.25, 0.5, 0.75];
+// let resultFood = food * coefFood[placeHolder];
+// let resultFitness = fitness * coeffitness[placeHolder];
+// let resultsleep = sleep * coefDleep[placeHolder];
+// let resultMood = Mood * coefMood[placeHolder];
+// let predictedValue = resultFood + resultFitness + resultMood + resultSleep;
+// if (predictedValue < 0.35) {
+//     predictedMood = 'Bad';
+// } else if (predictedValue < 0.55 && predictedValue >= 0.35) {
+//     predictedMood = 'Decent';
+// } else if (predictedValue > 0.55) {
+//     predictedMood = 'Good ';
+// }
 
+//This body of code will store user values in local storage.
+storedValues(1, 2, 3, 4);
+function storedValues(foodValue, fitnessValue, sleepValue, moodValue) {
+    var valuesArry = [];
+    var retrievedValues = localStorage.getItem("all-values");
+
+    if (retrievedValues) {
+        valuesArry = JSON.parse(retrievedValues);
+    }
+
+    var objValues = {
+        foodKey : foodValue,
+        fitnessKey : fitnessValue,
+        sleepKey : sleepValue,
+        moodKey : moodValue
+    };
+
+    valuesArry.push(objValues);
+
+    valuesSet(valuesArry);
+
+    function valuesSet(valArry) {
+        var convertObj = JSON.stringify(valArry);
+        localStorage.setItem("all-values", convertObj);
+    }
+
+    for (i = 0; i < valuesArry.length; i++) {
+        var inputValue = valuesArry[i];
+    }
+    console.log(inputValue.foodKey);
+    console.log(inputValue.fitnessKey);
+    console.log(inputValue.sleepKey);
+    console.log(inputValue.moodKey);
+
+}
