@@ -2,16 +2,17 @@ var inputName = document.getElementById("name");
 var inputEmail = document.getElementById("email");
 var button = document.getElementById("submit");
 var chartBtn = document.getElementById("chartBtn");
+var chartRBtn = document.getElementById("chartRBtn");
 
 
 
 
-button.addEventListener("click", function (event) {
-    console.log(inputName.value);
-    //resources(wellnessResources);
-    generateQuote();
+// button.addEventListener("click", function (event) {
+//     console.log(inputName.value);
+//     //resources(wellnessResources);
+//     generateQuote();
     
-});
+// });
 
 //This API fetches a resource 
 wellnessResources = "https://mental-health-info-api.p.rapidapi.com/news/"
@@ -70,6 +71,15 @@ chartBtn.addEventListener("click", function handleclick() {
         lineChart.style.display = "block";
     } else {
         lineChart.style.display = "none";
+    }
+})
+
+chartRBtn.addEventListener("click", function handleclick() {
+    var radarChart = document.getElementById("myChartR");
+    if (radarChart.style.display === "none") {
+        radarChart.style.display = "block";
+    } else {
+        radarChart.style.display = "none";
     }
 })
 
