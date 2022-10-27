@@ -1,6 +1,6 @@
 var inputName = document.getElementById("name");
 var inputEmail = document.getElementById("email");
-var button = document.getElementById("submit");
+var submitBtn = document.getElementById("submit");
 var chartBtn = document.getElementById("chartBtn");
 var chartRBtn = document.getElementById("chartRBtn");
 var clearBtn = document.getElementById("clearStorage");
@@ -8,7 +8,7 @@ var clearBtn = document.getElementById("clearStorage");
 
 //This function calls out the functions for the quotes & resource APIs and mood prediction on click.
 // This function is commented out because we have only a limited number of quotes we can generate.
-button.addEventListener("click", function (event) {
+submitBtn.addEventListener("click", function (event) {
     //console.log(inputName.value);
     //resources(wellnessResources);
     //generateQuote();
@@ -91,10 +91,7 @@ clearBtn.addEventListener("click", function handleclick() {
 })
 
 //This body of code will store user values in local storage.
-storedValues(0.75, 0.75, 0.75, 0.75);
-storedValues(5, 8, 2, 10);
-storedValues(14, 2, 29, 45);
-function storedValues(foodValue, fitnessValue, sleepValue, moodValue) {
+function storedValues(fitnessValue, foodValue, sleepValue, moodValue) {
     var valuesArry = [];
     var retrievedValues = localStorage.getItem("all-values");
 
@@ -103,8 +100,8 @@ function storedValues(foodValue, fitnessValue, sleepValue, moodValue) {
     }
 
     var objValues = {
-        foodKey : foodValue,
         fitnessKey : fitnessValue,
+        foodKey : foodValue,
         sleepKey : sleepValue,
         moodKey : moodValue
     };
@@ -121,11 +118,11 @@ function storedValues(foodValue, fitnessValue, sleepValue, moodValue) {
     for (i = 0; i < valuesArry.length; i++) {
         var inputValue = valuesArry[i];
     }
-    console.log(inputValue.foodKey);
-    console.log(inputValue.fitnessKey);
-    console.log(inputValue.sleepKey);
-    console.log(inputValue.moodKey);
-    addData(inputValue.foodKey, inputValue.fitnessKey, inputValue.sleepKey, inputValue.moodKey);
+    // console.log(inputValue.foodKey);
+    // console.log(inputValue.fitnessKey);
+    // console.log(inputValue.sleepKey);
+    // console.log(inputValue.moodKey);
+    addData(inputValue.fitnessKey, inputValue.foodKey, inputValue.sleepKey, inputValue.moodKey);
     addToRadar(inputValue.moodKey, inputValue.sleepKey, inputValue.foodKey, inputValue.fitnessKey);
 }
 
@@ -174,47 +171,68 @@ var diet;
 var sleep;
 var mood;
 
-var allValues = JSON.parse(localStorage.getItem("all-values"));
-console.log(allValues);
-lastValue = allValues.slice(-1);
-console.log(lastValue);
+
+
 
 function predictionFinal () {
+    var allValues = JSON.parse(localStorage.getItem("all-values"));
+    if (allValues) {
+        for (i = 0; i < allValues.length; i++) {
+            var lastValue = allValues[allValues.length - 1]
+        }
+    }
+    
+    console.log(lastValue);
+
     if (exerciseYes.checked) {
         exercise = 0.75;
     }
-    else {exercise = 0.25};
+    else {exercise = 0.25;}
 
     if (dietYes.checked) {
-        diet = 0.75    
+        diet = 0.75;    
     }
-    else {diet = 0.25};
+    else {diet = 0.25;}
 
     if (sleepYes.checked) {
-        sleep = 0.75    
+        sleep = 0.75;    
     }
-    else {sleep = 0.25};
+    else {sleep = 0.25;}
 
     if (moodGood.checked) {
-        mood = 0.75    
+        mood = 0.75 ;   
     }
     else if (moodNormal.checked) {
-        mood = 0.5
+        mood = 0.5;
     }
-    else {mood = 0.25};
+    else {mood = 0.25;}
+
+    storedValues(exercise, diet, sleep, mood);
 
     console.log(exercise);
-    console.log(typeof exercise)
     console.log(diet);
     console.log(sleep);
     console.log(mood);
 
-    var resultExercise = exercise * lastValue[0].fitnessKey;
-    var resultDiet = diet * lastValue[0].foodKey;
-    var resultSleep  = sleep * lastValue[0].sleepKey;
-    var resultMood = mood * lastValue[0].moodKey;
+    if (lastValue == null) {
+        var resultExercise = exercise;
+        var resultDiet = diet;
+        var resultSleep = sleep;
+        var resultMood = mood;
+    } else {
+        resultExercise = exercise * lastValue.fitnessKey;
+        resultDiet = diet * lastValue.foodKey;
+        resultSleep  = sleep * lastValue.sleepKey;
+        resultMood = mood * lastValue.moodKey;
+        var predictedValue = resultExercise + resultDiet + resultSleep + resultMood;
+    }
 
-    var predictedValue = resultExercise + resultDiet + resultSleep + resultMood;
+
+    console.log(resultExercise);
+    console.log(resultDiet);
+    console.log(resultSleep);
+    console.log(resultMood);
+
 
     if (predictedValue < 0.35) {
         predictedMood = 'Bad';
@@ -222,6 +240,8 @@ function predictionFinal () {
         predictedMood = 'Decent';
     } else if (predictedValue > 0.55) {
         predictedMood = 'Good ';
+    } else if (predictedValue == null) {
+        predictedMood = 'Prediction will be made after your next input';
     }
 
     console.log(predictedValue);
