@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Stability</title>
 </head>
 <body>
@@ -14,21 +14,27 @@
         <p>Enter your information below to track your daily progress</p>
     </header>
     <label for="exercise">Did you exercise today?</label> 
-    Yes <input type="checkbox" name="name" id="name">
-    No <input type="checkbox" name="name" id="name">
+    Yes <input type="checkbox" name="exercise" id="exerciseYes" value= "0.75">
+    No <input type="checkbox" name="exercise" id="exerciseNo" value="0.25">
     <br><br>
     <label for="diet">Did you eat healthy today?</label> 
-    Yes <input type="checkbox" name="name" id="name">
-    No <input type="checkbox" name="name" id="name">
+    Yes <input type="checkbox" name="diet" id="dietYes" value= "0.75">
+    No <input type="checkbox" name="diet" id="dietNo" value="0.25">
     <br><br>
-    <label for="diet">Did you sleep more than 7 hours today?</label> 
-    Yes <input type="checkbox" name="name" id="name">
-    No <input type="checkbox" name="name" id="name">
+    <label for="Caffine">Did you sleep more than 7 hours today?</label> 
+    Yes <input type="checkbox" name="sleep" id="sleepYes" value= "0.75">
+    No <input type="checkbox" name="sleep" id="sleepNo" value="0.25">
+    <br><br>
+    <label for="Mood">What mood were you in today most of the day?</label> 
+    Good <input type="checkbox" name="mood" id="moodGood" value= "0.75">
+    Normal <input type="checkbox" name="mood" id="moodNormal" value="0.5">
+    Bad <input type="checkbox" name="mood" id="moodBad" value="0.25">
     <br><br>
     <button id="submit">Submit</button><br><br>
     <div id="results">
         <p>URL:<a href="" id="url"></a></p>
-        <p>Source:<span id="source"></span></p><br><br>
+        <p>Source:<span id="source"></span></p>
+        <p>Predicted Mood:<span id="predictedMood"></span></p>
     </div>
         
     <button id="chartBtn">Chart</button>
