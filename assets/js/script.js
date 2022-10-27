@@ -6,16 +6,16 @@ var chartRBtn = document.getElementById("chartRBtn");
 var clearBtn = document.getElementById("clearStorage");
 
 
-
+//This function calls out the functions for the quotes & resource APIs and mood prediction on click.
 // This function is commented out because we have only a limited number of quotes we can generate.
-// button.addEventListener("click", function (event) {
-//     console.log(inputName.value);
-//     //resources(wellnessResources);
-//     generateQuote();
-    
-// });
+button.addEventListener("click", function (event) {
+    //console.log(inputName.value);
+    //resources(wellnessResources);
+    //generateQuote();
+    predictionFinal();
+});
 
-//This API fetches a resource 
+// This API fetches a resource - Please do not run this repeatedly as there is a limit to fetches we can make
 wellnessResources = "https://mental-health-info-api.p.rapidapi.com/news/"
 
 const options = {
@@ -44,7 +44,7 @@ function resources(urlHere){
 
 }
 
-//This API returns a motivational quote
+//This API returns a motivational quote - Please do not run this repeatedly as there is a limit to fetches we can make
 const quote = {
 	method: 'GET',
 	headers: {
@@ -90,30 +90,8 @@ clearBtn.addEventListener("click", function handleclick() {
     localStorage.clear();
 })
 
-// var predictedMood;
-// var food = $(inputFood);
-// var fitness = $(inputFitness);
-// var sleep = $(inputSleep);
-// var Mood = $(inputMood);
-// let coefFood = [0.25, 0.75];
-// let coefFitness = [0.25, 0.75];
-// let coatSleep = [0.25, 0.75];
-// let coefMood = [0.25, 0.5, 0.75];
-// let resultFood = food * coefFood[placeHolder];
-// let resultFitness = fitness * coeffitness[placeHolder];
-// let resultsleep = sleep * coefDleep[placeHolder];
-// let resultMood = Mood * coefMood[placeHolder];
-// let predictedValue = resultFood + resultFitness + resultMood + resultSleep;
-// if (predictedValue < 0.35) {
-//     predictedMood = 'Bad';
-// } else if (predictedValue < 0.55 && predictedValue >= 0.35) {
-//     predictedMood = 'Decent';
-// } else if (predictedValue > 0.55) {
-//     predictedMood = 'Good ';
-// }
-
 //This body of code will store user values in local storage.
-storedValues(54, 13, 15, 41);
+storedValues(0.75, 0.75, 0.75, 0.75);
 storedValues(5, 8, 2, 10);
 storedValues(14, 2, 29, 45);
 function storedValues(foodValue, fitnessValue, sleepValue, moodValue) {
@@ -151,3 +129,101 @@ function storedValues(foodValue, fitnessValue, sleepValue, moodValue) {
     addToRadar(inputValue.moodKey, inputValue.sleepKey, inputValue.foodKey, inputValue.fitnessKey);
 }
 
+
+//Immanuel's formula for prediction
+// if its a yes 0.75 and if its a no 0.25
+// var predictedMood;
+// var food = $(inputFood);
+// var fitness = $(inputFitness);
+// var sleep = $(inputSleep);
+// var Mood = $(inputMood);
+// let coefFood = [0.25, 0.75];
+// let coefFitness = [0.25, 0.75];
+// let coatSleep = [0.25, 0.75];
+// let coefMood = [0.25, 0.5, 0.75];
+// let resultFood = food * coefFood[placeHolder];//what we put in the placeholder is gonna be based on the previous history that we well fetch from local storage
+// let resultFitness = fitness * coeffitness[placeHolder];
+// let resultsleep = sleep * coefDleep[placeHolder];
+// let resultMood = Mood * coefMood[placeHolder];
+// let predictedValue = resultFood + resultFitness + resultMood + resultSleep;
+// if (predictedValue < 0.35) {
+//     predictedMood = 'Bad';
+// } else if (predictedValue < 0.55 && predictedValue >= 0.35) {
+//     predictedMood = 'Decent';
+// } else if (predictedValue > 0.55) {
+//     predictedMood = 'Good ';
+// }
+
+//The following code fetches the users response and previous data from localStorage to predict the next mood.
+var predictedMood;
+var exerciseYes = document.getElementById("exerciseYes");
+var exerciseNo = document.getElementById("exerciseNo");
+
+var dietYes = document.getElementById("dietYes");
+var dietNo = document.getElementById("dietNo");
+
+var sleepYes = document.getElementById("sleepYes");
+var sleepNo = document.getElementById("sleepNo");
+
+var moodGood = document.getElementById("moodGood");
+var moodNormal = document.getElementById("moodNormal");
+var moodBad = document.getElementById("moodBad");
+
+var exercise;
+var diet;
+var sleep;
+var mood;
+
+var allValues = JSON.parse(localStorage.getItem("all-values"));
+console.log(allValues);
+lastValue = allValues.slice(-1);
+console.log(lastValue);
+
+function predictionFinal () {
+    if (exerciseYes.checked) {
+        exercise = 0.75;
+    }
+    else {exercise = 0.25};
+
+    if (dietYes.checked) {
+        diet = 0.75    
+    }
+    else {diet = 0.25};
+
+    if (sleepYes.checked) {
+        sleep = 0.75    
+    }
+    else {sleep = 0.25};
+
+    if (moodGood.checked) {
+        mood = 0.75    
+    }
+    else if (moodNormal.checked) {
+        mood = 0.5
+    }
+    else {mood = 0.25};
+
+    console.log(exercise);
+    console.log(typeof exercise)
+    console.log(diet);
+    console.log(sleep);
+    console.log(mood);
+
+    var resultExercise = exercise * lastValue[0].fitnessKey;
+    var resultDiet = diet * lastValue[0].foodKey;
+    var resultSleep  = sleep * lastValue[0].sleepKey;
+    var resultMood = mood * lastValue[0].moodKey;
+
+    var predictedValue = resultExercise + resultDiet + resultSleep + resultMood;
+
+    if (predictedValue < 0.35) {
+        predictedMood = 'Bad';
+    } else if (predictedValue < 0.55 && predictedValue >= 0.35) {
+        predictedMood = 'Decent';
+    } else if (predictedValue > 0.55) {
+        predictedMood = 'Good ';
+    }
+
+    console.log(predictedValue);
+    console.log(predictedMood);
+    }
