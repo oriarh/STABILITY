@@ -1,7 +1,6 @@
 h1 {
     color: peachpuff;
     position: center;
-    
 }
 
 Body{
@@ -9,4 +8,42 @@ Body{
     height: 1px;
     font-size: large;
     font-family: he;
+}
+
+.wrapper {
+    display: block;
+}
+
+.calendarBox {
+    border: 1px solid black;
+    display: block;
+    height: 85px;
+    text-align: center;
+    margin: 4px;
+    padding: 8px;
+}
+
+.weekBox {
+    border: 1px solid black;
+    display: inline-block;
+    height: auto;
+    text-align: center;
+    margin: 0.5px;
+}
+
+.pure-g {
+    margin-left: auto auto;
+}
+
+.center {
+    justify-content: center; 
+}
+
+.boxElements {
+    display: block;
+    margin: 2px;
+}
+
+.moodHistory {
+    text-align: center;
 }
