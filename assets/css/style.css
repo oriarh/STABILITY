@@ -1,14 +1,31 @@
+
 h1 {
     color: peachpuff;
     position: center;
 }
 
+h2 {color: aquamarine;
+    position: center;
+}
+
+h3 { color:aqua
+}
+
 Body{
-    background-color: rgba(159, 243, 195, 0.777);
+    background-color: rgba(154, 42, 185, 0.777);
     height: 1px;
     font-size: large;
-    font-family: he;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+.section{
+    display: flex;
+    justify-content: space-between;
+}
+<<<<<<< HEAD
+img{
+    height: 300px;
+    margin: 15px ;
+=======
 
 .wrapper {
     display: block;
@@ -46,4 +63,5 @@ Body{
 
 .moodHistory {
     text-align: center;
+>>>>>>> 7c4d06b3c07cefde7eaf6b727f775e72029ec088
 }

@@ -7,31 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/pure/pure-min.css">
+    <link rel="stylesheet" href="/css/pure/grids-responsive-min.css">
+    <link rel="stylesheet" href="/layouts/gallery/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <title>Stability</title>
+
 </head>
 <body>
-    <header>
-        <h1>Stability</h1>
-        <p>Enter your information below to track your daily progress</p>
+    <header">
+        <h1><p style="text-align:center">STABILITY</p></h1>
+        <h2><p style="text-align:center">Track your days to gain STABILITY</p></h2>
     </header>
-    <label for="exercise">Did you exercise today?</label> 
+     <div class="section">
+    <h3> <label for="exercise">Did you exercise today?</label> </h3>
     Yes <input type="checkbox" name="exercise" id="exerciseYes" value= "0.75">
     No <input type="checkbox" name="exercise" id="exerciseNo" value="0.25">
     <br><br>
-    <label for="diet">Did you eat healthy today?</label> 
+    <h3><label for="diet">Did you eat healthy today?</label> </h3>
     Yes <input type="checkbox" name="diet" id="dietYes" value= "0.75">
     No <input type="checkbox" name="diet" id="dietNo" value="0.25">
     <br><br>
-    <label for="Caffine">Did you sleep more than 7 hours today?</label> 
+    <h3><label for="Caffine">Did you sleep more than 7 hours today?</label> </h3>
     Yes <input type="checkbox" name="sleep" id="sleepYes" value= "0.75">
     No <input type="checkbox" name="sleep" id="sleepNo" value="0.25">
     <br><br>
-    <label for="Mood">What mood were you in today most of the day?</label> 
+    <h3><label for="Mood">What mood were you in today most of the day?</label> </h3>
     Good <input type="checkbox" name="mood" id="moodGood" value= "0.75">
     Normal <input type="checkbox" name="mood" id="moodNormal" value="0.5">
     Bad <input type="checkbox" name="mood" id="moodBad" value="0.25">
+</div>
+    <img src="wellnessstockphoto-687504712-612x612.jpeg" alt="Wellness Buzzwords">
     <br><br>
-    <button id="submit">Submit</button><br><br>
+   <button id="submit">Submit</button><br><br>
     <div id="results">
         <p>URL:<a href="" id="url"></a></p>
         <p>Source:<span id="source"></span></p>
