@@ -22,7 +22,8 @@ Body{
     display: flex;
     justify-content: space-between;
 }
-section img{
+img{
     height: 300px;
+    margin: 15px ;
 
 }
