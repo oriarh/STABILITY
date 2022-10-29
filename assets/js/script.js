@@ -27,6 +27,7 @@ submitBtn.addEventListener("click", function (event) {
     localStorage.setItem("predictedMood",JSON.stringify(storedValuesPredictedMood));
     localStorage.setItem("actualMood",JSON.stringify(storedValuesMood));
 
+    clearHistory();
     generateHistory();
 });
 
@@ -291,4 +292,8 @@ function predictionFinal () {
                 calenderBox.append(dayEl,predictedMoodEl,moodEl);
                 }
                 }
+    };
+
+    function clearHistory () {
+        document.getElementById("clearHistory").textContent = "";
     };
