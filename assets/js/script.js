@@ -1,9 +1,15 @@
 var inputName = document.getElementById("name");
 var inputEmail = document.getElementById("email");
+var startBtn = document.getElementById("startBtn");
 var submitBtn = document.getElementById("submit");
 var chartBtn = document.getElementById("chartBtn");
 var chartRBtn = document.getElementById("chartRBtn");
 var clearBtn = document.getElementById("clearStorage");
+var subTitle = document.getElementById('subTitle');
+var landing = document.getElementById("landing");
+var section2 = document.getElementById("section2");
+var section3 = document.getElementById("section3");
+var moodHistory = document.getElementById("moodHistory");
 var storedValuesPredictedMood = [] //This array contains the previous predicted moods - its pushed to localstorage
 var storedValuesMood = [] //This array contains the previous actual moods - its pushed to localstorage
 
@@ -14,6 +20,19 @@ if (localStorage.getItem("predictedMood") != null) {
 if (localStorage.getItem("actualMood") != null) {
     storedValuesMood = JSON.parse(localStorage.getItem("actualMood"));
 };
+
+
+startBtn.addEventListener("click", function handleclick() {
+    landing.hidden = true;
+    subTitle.hidden = true;
+    section2.hidden = false;
+    section3.hidden = false;
+    moodHistory.hidden = false;
+})
+
+
+    
+
 
 
 //This function calls out the functions for the quotes & resource APIs and mood prediction on click.
