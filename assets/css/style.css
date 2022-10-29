@@ -30,6 +30,63 @@ img{
     display: block;
 }
 
+
+/*2nd Page*/
+
+.title {
+    text-align: center;
+    background-color: rgba(38, 255, 132, 0.777);
+}
+
+.goals-text {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mood-question {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mood-boxes {
+    margin: auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+ .questions{
+    margin-bottom: 15px;
+    margin-left: 50px;
+ }
+
+ .submitBtn {
+    margin-top: 25px;
+    padding: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px rgb(0, 0, 0);
+    border-radius: 10px;
+    color: rgb(109, 109, 109);
+    border: none;
+ }
+
+ .submitBtn:hover {
+    background-position: right center;
+ }
+
+ .submitBtn {
+    background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365);
+ }
+
+
+/*3rd page*/
+
 .calendarBox {
     border: 1px solid black;
     display: block;
