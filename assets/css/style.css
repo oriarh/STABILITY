@@ -18,3 +18,11 @@ Body{
     font-size: large;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+.section{
+    display: flex;
+    justify-content: space-between;
+}
+section img{
+    height: 300px;
+
+}
