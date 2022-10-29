@@ -4,6 +4,16 @@ var submitBtn = document.getElementById("submit");
 var chartBtn = document.getElementById("chartBtn");
 var chartRBtn = document.getElementById("chartRBtn");
 var clearBtn = document.getElementById("clearStorage");
+var storedValuesPredictedMood = [] //This array contains the previous predicted moods - its pushed to localstorage
+var storedValuesMood = [] //This array contains the previous actual moods - its pushed to localstorage
+
+if (localStorage.getItem("predictedMood") != null) {
+    storedValuesPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
+}
+
+if (localStorage.getItem("actualMood") != null) {
+    storedValuesMood = JSON.parse(localStorage.getItem("actualMood"));
+};
 
 
 //This function calls out the functions for the quotes & resource APIs and mood prediction on click.
@@ -13,6 +23,11 @@ submitBtn.addEventListener("click", function (event) {
     //resources(wellnessResources);
     //generateQuote();
     predictionFinal();
+
+    localStorage.setItem("predictedMood",JSON.stringify(storedValuesPredictedMood));
+    localStorage.setItem("actualMood",JSON.stringify(storedValuesMood));
+
+    generateHistory();
 });
 
 // This API fetches a resource - Please do not run this repeatedly as there is a limit to fetches we can make
@@ -171,9 +186,6 @@ var diet;
 var sleep;
 var mood;
 
-
-
-
 function predictionFinal () {
     var allValues = JSON.parse(localStorage.getItem("all-values"));
     if (allValues) {
@@ -200,12 +212,16 @@ function predictionFinal () {
     else {sleep = 0.25;}
 
     if (moodGood.checked) {
-        mood = 0.75 ;   
+        mood = 0.75 ; 
+        storedValuesMood.push("Good");  
     }
     else if (moodNormal.checked) {
         mood = 0.5;
+        storedValuesMood.push("Decent");
     }
-    else {mood = 0.25;}
+    else {mood = 0.25;
+        storedValuesMood.push("Bad");
+    }
 
     storedValues(exercise, diet, sleep, mood);
 
@@ -244,6 +260,35 @@ function predictionFinal () {
         predictedMood = 'Prediction will be made after your next input';
     }
 
+    storedValuesPredictedMood.push(predictedMood);
+
     console.log(predictedValue);
     console.log(predictedMood);
     }
+
+    //This function fetches values from localstorage to generate user history since day 1
+    function generateHistory() {
+        var allValues = JSON.parse(localStorage.getItem("all-values"));
+        var prevPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
+        var prevActualMood =  JSON.parse(localStorage.getItem("actualMood"));
+        if (allValues != null) {
+            for (i = 0; i < prevActualMood.length; i++) {
+                var calenderBox = document.createElement('div');
+                var dayEl = document.createElement('span');
+                var predictedMoodEl = document.createElement('span');
+                var moodEl = document.createElement('span');
+    
+                calenderBox.setAttribute("class","calendarBox pure-u-1-5");
+                dayEl.setAttribute("class","boxElements");
+                predictedMoodEl.setAttribute("class","boxElements");
+                moodEl.setAttribute("class","boxElements");
+    
+                dayEl.textContent = "Day " + (i+1);
+                predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
+                moodEl.textContent = "Actual Mood: " + prevActualMood[i];
+    
+                document.querySelector(".pure-g").appendChild(calenderBox);
+                calenderBox.append(dayEl,predictedMoodEl,moodEl);
+                }
+                }
+    };

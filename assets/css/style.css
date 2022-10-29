@@ -2,7 +2,6 @@
 h1 {
     color: peachpuff;
     position: center;
-    
 }
 
 h2 {color: aquamarine;
@@ -22,7 +21,47 @@ Body{
     display: flex;
     justify-content: space-between;
 }
+<<<<<<< HEAD
 img{
     height: 300px;
     margin: 15px ;
+=======
+
+.wrapper {
+    display: block;
+}
+
+.calendarBox {
+    border: 1px solid black;
+    display: block;
+    height: 85px;
+    text-align: center;
+    margin: 4px;
+    padding: 8px;
+}
+
+.weekBox {
+    border: 1px solid black;
+    display: inline-block;
+    height: auto;
+    text-align: center;
+    margin: 0.5px;
+}
+
+.pure-g {
+    margin-left: auto auto;
+}
+
+.center {
+    justify-content: center; 
+}
+
+.boxElements {
+    display: block;
+    margin: 2px;
+}
+
+.moodHistory {
+    text-align: center;
+>>>>>>> 7c4d06b3c07cefde7eaf6b727f775e72029ec088
 }
