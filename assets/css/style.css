@@ -21,12 +21,11 @@ Body{
     display: flex;
     justify-content: space-between;
 }
-<<<<<<< HEAD
+
 img{
     height: 300px;
     margin: 15px ;
-=======
-
+}
 .wrapper {
     display: block;
 }
@@ -63,5 +62,4 @@ img{
 
 .moodHistory {
     text-align: center;
->>>>>>> 7c4d06b3c07cefde7eaf6b727f775e72029ec088
 }
