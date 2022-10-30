@@ -103,7 +103,7 @@ function generateQuote() {
 
 //This event listener displays the line chart when the button is clicked
 chartBtn.addEventListener("click", function handleclick() {
-    var lineChart = document.getElementById("myChart");
+    var lineChart = document.getElementById("chartLinePlot");
     if (lineChart.style.display === "none") {
         lineChart.style.display = "block";
     } else {
