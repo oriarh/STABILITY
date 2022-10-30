@@ -75,27 +75,6 @@ img{
     flex-flow: unset !important;
  }
 
- .button-style {
-    margin-top: 25px;
-    padding: 10px 25px 10px 25px;
-    transition: 0.5s;
-    background-size: 200% auto;
-    margin-bottom: 20px;
-    border-radius: 1rem;
-    background-color: #c938a7;
-    color: white;
-    border: 1px solid black; ;
- }
-
- .button-style:hover {
-    background-position: right center;
- }
-
- /* .submitBtn {
-    background-image: linear-gradient(to right, #12ea2d 0%, #1bea12 51%, #12ea41);
- } */
-
-
 /*3rd page*/
 
 .calendarBox {
@@ -132,10 +111,11 @@ img{
     text-align: center;
 }
 
-.startBtn {
+.btnStyle {
     display: block;
     margin: auto;
     margin-top: 38px;
+    margin-bottom: 30px;
     padding: 6px 20px 6px 20px;
     border-radius: 1rem;
     border: 1px solid black; 

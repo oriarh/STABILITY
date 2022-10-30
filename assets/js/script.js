@@ -108,6 +108,7 @@ function generateQuote() {
 //This event listener displays the line chart when the button is clicked
 chartLinePlotBtn.addEventListener("click", function handleclick() {
     var lineChart = document.getElementById("chartLinePlot");
+    
     if(lineChart.hidden === true) {
         lineChart.hidden = false;
     } else {
@@ -319,6 +320,7 @@ function predictionFinal () {
 
     function clearHistory () {
         document.getElementById("clearHistory").textContent = "";
+        
     };
 
     returnHome.addEventListener("click", function handleclick() {
