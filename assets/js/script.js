@@ -374,20 +374,20 @@ var sleep60 = changeTypeString(tmpSleep, true);
 var exercise60 = changeTypeString(tmpExercise, true);
 var mood60 = changeTypeString(tmpMood, false);
 
+// Recent Month Days
+var recentMonthDiet = diet60.slice(-30);
+var recentMonthSleep = sleep60.slice(-30);
+var recentMonthExercise = exercise60.slice(-30);
+var recentMonthMood = mood60.slice(-30);
 
-var recentMonthDiet = ;
+// Past Month Days
+var oldMonthDiet = diet60.slice(0,30);
 
 
+
+// Plotting based on olddata
 for (let i = 0; i < tmpNumOfDays; i++) {
     storedValues(exercise60[59 - i], diet60[59 - i], sleep60[59 - i], mood60[59 - i]);
   }
 
 
-  subset = function(Arr,begin,end){
-    var tmpArr = [];
-    if 
-    for(let i = begin; begin <end; i++){
-        Arr.pop(i)
-    }
-
-  }
