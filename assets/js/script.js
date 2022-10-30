@@ -10,6 +10,7 @@ var landing = document.getElementById("landing");
 var section2 = document.getElementById("section2");
 var section3 = document.getElementById("section3");
 var moodHistory = document.getElementById("moodHistory");
+var returnHome = document.getElementById("returnHome");
 var storedValuesPredictedMood = [] //This array contains the previous predicted moods - its pushed to localstorage
 var storedValuesMood = [] //This array contains the previous actual moods - its pushed to localstorage
 
@@ -26,8 +27,8 @@ startBtn.addEventListener("click", function handleclick() {
     landing.hidden = true;
     subTitle.hidden = true;
     section2.hidden = false;
-    section3.hidden = false;
-    moodHistory.hidden = false;
+    section3.hidden = true;
+    moodHistory.hidden = true;
 })
 
 
@@ -46,6 +47,9 @@ submitBtn.addEventListener("click", function (event) {
     localStorage.setItem("predictedMood", JSON.stringify(storedValuesPredictedMood));
     localStorage.setItem("actualMood", JSON.stringify(storedValuesMood));
 
+    section2.hidden = true;
+    moodHistory.hidden = false;
+    section3.hidden = false;
     clearHistory();
     generateHistory();
 });
@@ -104,20 +108,21 @@ function generateQuote() {
 //This event listener displays the line chart when the button is clicked
 chartLinePlotBtn.addEventListener("click", function handleclick() {
     var lineChart = document.getElementById("chartLinePlot");
-    if (lineChart.style.display === "none") {
-        lineChart.style.display = "block";
+    
+    if(lineChart.hidden === true) {
+        lineChart.hidden = false;
     } else {
-        lineChart.style.display = "none";
+        lineChart.hidden = true;
     }
 })
 
 //This button displays the radar chart when clicked.
 chartRadarBtn.addEventListener("click", function handleclick() {
     var radarChart = document.getElementById("chartRadar");
-    if (radarChart.style.display === "none") {
-        radarChart.style.display = "block";
+    if (radarChart.hidden === true) {
+        radarChart.hidden = false;
     } else {
-        radarChart.style.display = "none";
+        radarChart.hidden = true;
     }
 })
 
@@ -287,107 +292,33 @@ function predictionFinal() {
     console.log(predictedMood);
 }
 
-//This function fetches values from localstorage to generate user history since day 1
-function generateHistory() {
-    var allValues = JSON.parse(localStorage.getItem("all-values"));
-    var prevPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
-    var prevActualMood = JSON.parse(localStorage.getItem("actualMood"));
-    if (allValues != null) {
-        for (i = 0; i < prevActualMood.length; i++) {
-            var calenderBox = document.createElement('div');
-            var dayEl = document.createElement('span');
-            var predictedMoodEl = document.createElement('span');
-            var moodEl = document.createElement('span');
+    //This function fetches values from localstorage to generate user history since day 1
+    function generateHistory() {
+        var allValues = JSON.parse(localStorage.getItem("all-values"));
+        var prevPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
+        var prevActualMood =  JSON.parse(localStorage.getItem("actualMood"));
+        if (allValues != null) {
+            for (i = 0; i < prevActualMood.length; i++) {
+                var calenderBox = document.createElement('div');
+                var dayEl = document.createElement('span');
+                var predictedMoodEl = document.createElement('span');
+                var moodEl = document.createElement('span');
+    
+                calenderBox.setAttribute("class","calendarBox pure-u-1-5");
+                dayEl.setAttribute("class","boxElements");
+                predictedMoodEl.setAttribute("class","boxElements");
+                moodEl.setAttribute("class","boxElements");
+    
+                dayEl.textContent = "Day " + (i+1);
+                predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
+                moodEl.textContent = "Actual Mood: " + prevActualMood[i];
+    
+                document.getElementById("clearHistory").appendChild(calenderBox);
+                calenderBox.append(dayEl,predictedMoodEl,moodEl);
+                }
+                }
+    };
 
-            calenderBox.setAttribute("class", "calendarBox pure-u-1-5");
-            dayEl.setAttribute("class", "boxElements");
-            predictedMoodEl.setAttribute("class", "boxElements");
-            moodEl.setAttribute("class", "boxElements");
-
-            dayEl.textContent = "Day " + (i + 1);
-            predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
-            moodEl.textContent = "Actual Mood: " + prevActualMood[i];
-
-            document.querySelector(".pure-g").appendChild(calenderBox);
-            calenderBox.append(dayEl, predictedMoodEl, moodEl);
-        }
-    }
-};
-
-function clearHistory() {
-    document.getElementById("clearHistory").textContent = "";
-};
-
-
-
-// Generate Random Data    
-let numofDayMetrics = 1;
-let numOfDays = 60;
-let numOfMetrics = numOfDays * numofDayMetrics;
-
-var metricTimes = ['7:45'];
-const repeat = (arr, n) => Array(n).fill(arr).flat();
-var repeatMetricTimes = repeat(metricTimes, numOfDays);
-console.log(repeatMetricTimes);
-
-tmpExercise = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
-tmpDiet = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
-tmpSleep = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
-tmpMood = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 3));
-
-
-
-// Function to Change data into yes and nos
-changeTypeString = function (arrayInfo, isBinary) {
-    var arrayInfoSwitched = [];
-    var tmpInfo;
-    if (isBinary == true) {
-        for (const element of arrayInfo) {
-            if (element == 1) {
-                tmpInfo = 0.75;
-            } else {
-                tmpInfo = 0.25;
-            }
-            arrayInfoSwitched.push(tmpInfo);
-        }
-    } else {
-        for (const element of arrayInfo) {
-            if (element == 2) {
-                tmpInfo = 0.75;
-            } else if (element == 1) {
-                tmpInfo = 0.5;
-            } else if (element == 0) {
-                tmpInfo = 0.25;
-            }
-            arrayInfoSwitched.push(tmpInfo);
-        }
-    }
-
-
-    return arrayInfoSwitched;
-}
-
-
-// We could have made this into an object and save space
-var diet60 = changeTypeString(tmpDiet, true);
-var sleep60 = changeTypeString(tmpSleep, true);
-var exercise60 = changeTypeString(tmpExercise, true);
-var mood60 = changeTypeString(tmpMood, false);
-
-// Recent Month Days
-var recentMonthDiet = diet60.slice(-30);
-var recentMonthSleep = sleep60.slice(-30);
-var recentMonthExercise = exercise60.slice(-30);
-var recentMonthMood = mood60.slice(-30);
-
-// Past Month Days
-var oldMonthDiet = diet60.slice(0,30);
-
-
-
-// Plotting based on olddata
-for (let i = 0; i < tmpNumOfDays; i++) {
-    storedValues(exercise60[59 - i], diet60[59 - i], sleep60[59 - i], mood60[59 - i]);
-  }
-
-
+    function clearHistory () {
+        document.getElementById("clearHistory").textContent = "";
+    };
