@@ -75,7 +75,7 @@ img{
     flex-flow: unset !important;
  }
 
- .submitBtn {
+ .button-style {
     margin-top: 25px;
     padding: 10px 25px 10px 25px;
     transition: 0.5s;
@@ -87,7 +87,7 @@ img{
     border: 1px solid black; ;
  }
 
- .submitBtn:hover {
+ .button-style:hover {
     background-position: right center;
  }
 
