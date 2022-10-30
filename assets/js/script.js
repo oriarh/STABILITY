@@ -292,6 +292,7 @@ function predictionFinal() {
     console.log(predictedMood);
 }
 
+<<<<<<< Updated upstream
     //This function fetches values from localstorage to generate user history since day 1
     function generateHistory() {
         var allValues = JSON.parse(localStorage.getItem("all-values"));
@@ -318,6 +319,114 @@ function predictionFinal() {
                 }
                 }
     };
+=======
+//This function fetches values from localstorage to generate user history since day 1
+function generateHistory() {
+    var allValues = JSON.parse(localStorage.getItem("all-values"));
+    var prevPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
+    var prevActualMood = JSON.parse(localStorage.getItem("actualMood"));
+    if (allValues != null) {
+        for (i = 0; i < prevActualMood.length; i++) {
+            var calenderBox = document.createElement('div');
+            var dayEl = document.createElement('span');
+            var predictedMoodEl = document.createElement('span');
+            var moodEl = document.createElement('span');
+
+            calenderBox.setAttribute("class", "calendarBox pure-u-1-5");
+            dayEl.setAttribute("class", "boxElements");
+            predictedMoodEl.setAttribute("class", "boxElements");
+            moodEl.setAttribute("class", "boxElements");
+
+            dayEl.textContent = "Day " + (i + 1);
+            predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
+            moodEl.textContent = "Actual Mood: " + prevActualMood[i];
+
+            document.querySelector(".pure-g").appendChild(calenderBox);
+            calenderBox.append(dayEl, predictedMoodEl, moodEl);
+        }
+    }
+};
+
+function clearHistory() {
+    document.getElementById("clearHistory").textContent = "";
+};
+
+
+
+// Generate Random Data    
+let numofDayMetrics = 1;
+let numOfDays = 60;
+let numOfMetrics = numOfDays * numofDayMetrics;
+
+var metricTimes = ['7:45'];
+const repeat = (arr, n) => Array(n).fill(arr).flat();
+var repeatMetricTimes = repeat(metricTimes, numOfDays);
+console.log(repeatMetricTimes);
+
+tmpExercise = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
+tmpDiet = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
+tmpSleep = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
+tmpMood = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 3));
+
+
+
+// Function to Change data into yes and nos
+changeTypeString = function (arrayInfo, isBinary) {
+    var arrayInfoSwitched = [];
+    var tmpInfo;
+    if (isBinary == true) {
+        for (const element of arrayInfo) {
+            if (element == 1) {
+                tmpInfo = 0.75;
+            } else {
+                tmpInfo = 0.25;
+            }
+            arrayInfoSwitched.push(tmpInfo);
+        }
+    } else {
+        for (const element of arrayInfo) {
+            if (element == 2) {
+                tmpInfo = 0.75;
+            } else if (element == 1) {
+                tmpInfo = 0.5;
+            } else if (element == 0) {
+                tmpInfo = 0.25;
+            }
+            arrayInfoSwitched.push(tmpInfo);
+        }
+    }
+
+
+    return arrayInfoSwitched;
+}
+
+
+// We could have made this into an object and save space
+var diet60 = changeTypeString(tmpDiet, true);
+var sleep60 = changeTypeString(tmpSleep, true);
+var exercise60 = changeTypeString(tmpExercise, true);
+var mood60 = changeTypeString(tmpMood, false);
+
+// Recent Month Days
+var recentMonthDiet = diet60.slice(-30);
+var recentMonthSleep = sleep60.slice(-30);
+var recentMonthExercise = exercise60.slice(-30);
+var recentMonthMood = mood60.slice(-30);
+
+// Past Month Days
+var oldMonthDiet = diet60.slice(0,30);
+var oldMonthSleep = sleep60.slice(0,30);
+var oldMonthExercise = exercise60.slice(0,30);
+var oldMonthMood = mood60.slice(0,30);
+
+
+
+// Plotting based on olddata
+for (let i = 0; i < tmpNumOfDays; i++) {
+    storedValues(exercise60[59 - i], diet60[59 - i], sleep60[59 - i], mood60[59 - i]);
+  }
+
+>>>>>>> Stashed changes
 
     function clearHistory () {
         document.getElementById("clearHistory").textContent = "";
