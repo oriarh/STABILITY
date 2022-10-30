@@ -10,6 +10,7 @@ var landing = document.getElementById("landing");
 var section2 = document.getElementById("section2");
 var section3 = document.getElementById("section3");
 var moodHistory = document.getElementById("moodHistory");
+var returnHome = document.getElementById("returnHome");
 var storedValuesPredictedMood = [] //This array contains the previous predicted moods - its pushed to localstorage
 var storedValuesMood = [] //This array contains the previous actual moods - its pushed to localstorage
 
@@ -107,20 +108,20 @@ function generateQuote() {
 //This event listener displays the line chart when the button is clicked
 chartLinePlotBtn.addEventListener("click", function handleclick() {
     var lineChart = document.getElementById("chartLinePlot");
-    if (lineChart.style.display === "none") {
-        lineChart.style.display = "block";
+    if(lineChart.hidden === true) {
+        lineChart.hidden = false;
     } else {
-        lineChart.style.display = "none";
+        lineChart.hidden = true;
     }
 })
 
 //This button displays the radar chart when clicked.
 chartRadarBtn.addEventListener("click", function handleclick() {
     var radarChart = document.getElementById("chartRadar");
-    if (radarChart.style.display === "none") {
-        radarChart.style.display = "block";
+    if (radarChart.hidden === true) {
+        radarChart.hidden = false;
     } else {
-        radarChart.style.display = "none";
+        radarChart.hidden = true;
     }
 })
 
@@ -319,3 +320,7 @@ function predictionFinal () {
     function clearHistory () {
         document.getElementById("clearHistory").textContent = "";
     };
+
+    returnHome.addEventListener("click", function handleclick() {
+        window.location.reload();
+    });
