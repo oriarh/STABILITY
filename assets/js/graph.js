@@ -28,7 +28,7 @@ var chartLinePlot = new Chart("chartLinePlot", {
   }
 });
 
-var xValuesR = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+var xValuesR = ["Mood","Diet","Exercise","Sleep"];
 var chartRadar = document.getElementById('chartRadar').getContext('2d');
 
 var chartRadar = new Chart("chartRadar", {
