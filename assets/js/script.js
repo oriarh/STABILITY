@@ -113,7 +113,7 @@ chartBtn.addEventListener("click", function handleclick() {
 
 //This button displays the radar chart when clicked.
 chartRBtn.addEventListener("click", function handleclick() {
-    var radarChart = document.getElementById("myChartR");
+    var radarChart = document.getElementById("chartRadar");
     if (radarChart.style.display === "none") {
         radarChart.style.display = "block";
     } else {
