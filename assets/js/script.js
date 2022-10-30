@@ -26,8 +26,8 @@ startBtn.addEventListener("click", function handleclick() {
     landing.hidden = true;
     subTitle.hidden = true;
     section2.hidden = false;
-    section3.hidden = false;
-    moodHistory.hidden = false;
+    section3.hidden = true;
+    moodHistory.hidden = true;
 })
 
 
@@ -46,6 +46,9 @@ submitBtn.addEventListener("click", function (event) {
     localStorage.setItem("predictedMood",JSON.stringify(storedValuesPredictedMood));
     localStorage.setItem("actualMood",JSON.stringify(storedValuesMood));
 
+    section2.hidden = true;
+    moodHistory.hidden = false;
+    section3.hidden = false;
     clearHistory();
     generateHistory();
 });
@@ -307,7 +310,7 @@ function predictionFinal () {
                 predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
                 moodEl.textContent = "Actual Mood: " + prevActualMood[i];
     
-                document.querySelector(".pure-g").appendChild(calenderBox);
+                document.getElementById("clearHistory").appendChild(calenderBox);
                 calenderBox.append(dayEl,predictedMoodEl,moodEl);
                 }
                 }
