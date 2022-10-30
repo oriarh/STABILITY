@@ -2,7 +2,7 @@ var inputName = document.getElementById("name");
 var inputEmail = document.getElementById("email");
 var startBtn = document.getElementById("startBtn");
 var submitBtn = document.getElementById("submit");
-var chartBtn = document.getElementById("chartBtn");
+var chartLinePlotBtn = document.getElementById("chartLinePlotBtn");
 var chartRadarBtn = document.getElementById("chartRadarBtn");
 var clearBtn = document.getElementById("clearStorage");
 var subTitle = document.getElementById('subTitle');
@@ -102,7 +102,7 @@ function generateQuote() {
 }
 
 //This event listener displays the line chart when the button is clicked
-chartBtn.addEventListener("click", function handleclick() {
+chartLinePlotBtn.addEventListener("click", function handleclick() {
     var lineChart = document.getElementById("chartLinePlot");
     if (lineChart.style.display === "none") {
         lineChart.style.display = "block";
