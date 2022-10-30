@@ -108,8 +108,8 @@ function generateQuote() {
 //This event listener displays the line chart when the button is clicked
 chartLinePlotBtn.addEventListener("click", function handleclick() {
     var lineChart = document.getElementById("chartLinePlot");
-    
-    if(lineChart.hidden === true) {
+
+    if (lineChart.hidden === true) {
         lineChart.hidden = false;
     } else {
         lineChart.hidden = true;
@@ -293,32 +293,32 @@ function predictionFinal() {
 }
 
 <<<<<<< Updated upstream
-    //This function fetches values from localstorage to generate user history since day 1
-    function generateHistory() {
-        var allValues = JSON.parse(localStorage.getItem("all-values"));
-        var prevPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
-        var prevActualMood =  JSON.parse(localStorage.getItem("actualMood"));
-        if (allValues != null) {
-            for (i = 0; i < prevActualMood.length; i++) {
-                var calenderBox = document.createElement('div');
-                var dayEl = document.createElement('span');
-                var predictedMoodEl = document.createElement('span');
-                var moodEl = document.createElement('span');
-    
-                calenderBox.setAttribute("class","calendarBox pure-u-1-5");
-                dayEl.setAttribute("class","boxElements");
-                predictedMoodEl.setAttribute("class","boxElements");
-                moodEl.setAttribute("class","boxElements");
-    
-                dayEl.textContent = "Day " + (i+1);
-                predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
-                moodEl.textContent = "Actual Mood: " + prevActualMood[i];
-    
-                document.getElementById("clearHistory").appendChild(calenderBox);
-                calenderBox.append(dayEl,predictedMoodEl,moodEl);
-                }
-                }
-    };
+//This function fetches values from localstorage to generate user history since day 1
+function generateHistory() {
+    var allValues = JSON.parse(localStorage.getItem("all-values"));
+    var prevPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
+    var prevActualMood = JSON.parse(localStorage.getItem("actualMood"));
+    if (allValues != null) {
+        for (i = 0; i < prevActualMood.length; i++) {
+            var calenderBox = document.createElement('div');
+            var dayEl = document.createElement('span');
+            var predictedMoodEl = document.createElement('span');
+            var moodEl = document.createElement('span');
+
+            calenderBox.setAttribute("class", "calendarBox pure-u-1-5");
+            dayEl.setAttribute("class", "boxElements");
+            predictedMoodEl.setAttribute("class", "boxElements");
+            moodEl.setAttribute("class", "boxElements");
+
+            dayEl.textContent = "Day " + (i + 1);
+            predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
+            moodEl.textContent = "Actual Mood: " + prevActualMood[i];
+
+            document.getElementById("clearHistory").appendChild(calenderBox);
+            calenderBox.append(dayEl, predictedMoodEl, moodEl);
+        }
+    }
+};
 =======
 //This function fetches values from localstorage to generate user history since day 1
 function generateHistory() {
@@ -353,7 +353,7 @@ function clearHistory() {
 
 
 
-// Generate Random Data    
+// Generate Random Data
 let numofDayMetrics = 1;
 let numOfDays = 60;
 let numOfMetrics = numOfDays * numofDayMetrics;
@@ -425,6 +425,11 @@ var oldMonthSleep = sleep60.slice(0,30);
 var oldMonthExercise = exercise60.slice(0,30);
 var oldMonthMood = mood60.slice(0,30);
 
+// Past Weeks Days
+var oldWeekDiet = diet60.slice(-14,-7);
+var oldWeekSleep = sleep60.slice(-14,-7);
+var oldWeekExercise = exercise60.slice(-14,-7);
+var oldWeekMood = mood60.slice(-14,-7);
 
 
 
@@ -436,6 +441,6 @@ for (let i = 0; i < tmpNumOfDays; i++) {
 
 >>>>>>> Stashed changes
 
-    function clearHistory () {
-        document.getElementById("clearHistory").textContent = "";
-    };
+function clearHistory() {
+    document.getElementById("clearHistory").textContent = "";
+};
