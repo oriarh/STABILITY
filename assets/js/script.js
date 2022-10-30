@@ -334,3 +334,35 @@ tmpExercise = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random(
 tmpDiet = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
 tmpSleep = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
 tmpMood = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 3));
+
+
+
+// Function to Change data into yes and nos
+changeTypeString = function (arrayInfo, isBinary) {
+    var arrayInfoSwitched = [];
+    var tmpInfo;
+    if (isBinary == true) {
+        for (const element of arrayInfo) {
+            if (element == 1) {
+                tmpInfo = 0.75;
+            } else {
+                tmpInfo = 0.25;
+            }
+            arrayInfoSwitched.push(tmpInfo);
+        }
+    } else {
+        for (const element of arrayInfo) {
+            if (element == 2) {
+                tmpInfo = 0.75;
+            } else if (element == 1) {
+                tmpInfo = 0.5;
+            } else if (element == 0) {
+                tmpInfo = 0.25;
+            }
+            arrayInfoSwitched.push(tmpInfo);
+        }
+    }
+
+
+    return arrayInfoSwitched;
+}
