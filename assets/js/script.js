@@ -368,13 +368,26 @@ changeTypeString = function (arrayInfo, isBinary) {
 }
 
 
+// We could have made this into an object and save space
 var diet60 = changeTypeString(tmpDiet, true);
 var sleep60 = changeTypeString(tmpSleep, true);
 var exercise60 = changeTypeString(tmpExercise, true);
 var mood60 = changeTypeString(tmpMood, false);
 
 
+var recentMonthDiet = ;
+
 
 for (let i = 0; i < tmpNumOfDays; i++) {
     storedValues(exercise60[59 - i], diet60[59 - i], sleep60[59 - i], mood60[59 - i]);
+  }
+
+
+  subset = function(Arr,begin,end){
+    var tmpArr = [];
+    if 
+    for(let i = begin; begin <end; i++){
+        Arr.pop(i)
+    }
+
   }
