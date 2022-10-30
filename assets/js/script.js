@@ -434,10 +434,16 @@ var oldWeekMood = mood60.slice(-14,-7);
 
 
 
+
+
+const average = array => array.reduce((a, b) => a + b) / array.length;
+
+
+
 // Plotting based on olddata
-for (let i = 0; i < tmpNumOfDays; i++) {
-    storedValues(exercise60[59 - i], diet60[59 - i], sleep60[59 - i], mood60[59 - i]);
-  }
+// for (let i = 0; i < tmpNumOfDays; i++) {
+//     storedValues(exercise60[59 - i], diet60[59 - i], sleep60[59 - i], mood60[59 - i]);
+//   }
 
 >>>>>>> Stashed changes
 
