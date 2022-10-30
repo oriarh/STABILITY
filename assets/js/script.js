@@ -31,7 +31,7 @@ startBtn.addEventListener("click", function handleclick() {
 })
 
 
-    
+
 
 
 
@@ -43,8 +43,8 @@ submitBtn.addEventListener("click", function (event) {
     //generateQuote();
     predictionFinal();
 
-    localStorage.setItem("predictedMood",JSON.stringify(storedValuesPredictedMood));
-    localStorage.setItem("actualMood",JSON.stringify(storedValuesMood));
+    localStorage.setItem("predictedMood", JSON.stringify(storedValuesPredictedMood));
+    localStorage.setItem("actualMood", JSON.stringify(storedValuesMood));
 
     clearHistory();
     generateHistory();
@@ -54,49 +54,49 @@ submitBtn.addEventListener("click", function (event) {
 wellnessResources = "https://mental-health-info-api.p.rapidapi.com/news/"
 
 const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '3c313ca13emshc988d22656a2bf6p161138jsn6b514aadf4e3',
-		'X-RapidAPI-Host': 'mental-health-info-api.p.rapidapi.com'
-	}
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': '3c313ca13emshc988d22656a2bf6p161138jsn6b514aadf4e3',
+        'X-RapidAPI-Host': 'mental-health-info-api.p.rapidapi.com'
+    }
 };
 
-function resources(urlHere){
-    fetch(urlHere,options)
-    .then(function (response) {
-        console.log(response.status);
-        return response.json();
+function resources(urlHere) {
+    fetch(urlHere, options)
+        .then(function (response) {
+            console.log(response.status);
+            return response.json();
         }
-    )
-    .then(function(data) {
-        console.log(data);
-        //document.getElementById('title').textContent = data[Math.floor(Math.random()*67)].title;
-        document.getElementById('url').href = data[Math.floor(Math.random()*67)].url;
-        document.getElementById('url').textContent = data[Math.floor(Math.random()*67)].url;
-        document.getElementById('source').textContent = data[Math.floor(Math.random()*67)].source; 
+        )
+        .then(function (data) {
+            console.log(data);
+            //document.getElementById('title').textContent = data[Math.floor(Math.random()*67)].title;
+            document.getElementById('url').href = data[Math.floor(Math.random() * 67)].url;
+            document.getElementById('url').textContent = data[Math.floor(Math.random() * 67)].url;
+            document.getElementById('source').textContent = data[Math.floor(Math.random() * 67)].source;
         }
-    )
+        )
 
 }
 
 //This API returns a motivational quote - Please do not run this repeatedly as there is a limit to fetches we can make
 const quote = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '3c313ca13emshc988d22656a2bf6p161138jsn6b514aadf4e3',
-		'X-RapidAPI-Host': 'motivational-content.p.rapidapi.com'
-	}
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': '3c313ca13emshc988d22656a2bf6p161138jsn6b514aadf4e3',
+        'X-RapidAPI-Host': 'motivational-content.p.rapidapi.com'
+    }
 };
 
 function generateQuote() {
-    fetch('https://motivational-content.p.rapidapi.com/quotes/'+ Math.floor(Math.random()*650), quote)
+    fetch('https://motivational-content.p.rapidapi.com/quotes/' + Math.floor(Math.random() * 650), quote)
         .then(response => response.json())
-        .then(function(data){
-        console.log(data);
-        var quote = document.createElement("p");
-        quote.textContent = data.quote;
-        document.getElementById("results").appendChild(quote);
-        
+        .then(function (data) {
+            console.log(data);
+            var quote = document.createElement("p");
+            quote.textContent = data.quote;
+            document.getElementById("results").appendChild(quote);
+
         })
         .catch(err => console.error(err));
 }
@@ -135,10 +135,10 @@ function storedValues(fitnessValue, foodValue, sleepValue, moodValue) {
     }
 
     var objValues = {
-        fitnessKey : fitnessValue,
-        foodKey : foodValue,
-        sleepKey : sleepValue,
-        moodKey : moodValue
+        fitnessKey: fitnessValue,
+        foodKey: foodValue,
+        sleepKey: sleepValue,
+        moodKey: moodValue
     };
 
     valuesArry.push(objValues);
@@ -206,40 +206,41 @@ var diet;
 var sleep;
 var mood;
 
-function predictionFinal () {
+function predictionFinal() {
     var allValues = JSON.parse(localStorage.getItem("all-values"));
     if (allValues) {
         for (i = 0; i < allValues.length; i++) {
             var lastValue = allValues[allValues.length - 1]
         }
     }
-    
+
     console.log(lastValue);
 
     if (exerciseYes.checked) {
         exercise = 0.75;
     }
-    else {exercise = 0.25;}
+    else { exercise = 0.25; }
 
     if (dietYes.checked) {
-        diet = 0.75;    
+        diet = 0.75;
     }
-    else {diet = 0.25;}
+    else { diet = 0.25; }
 
     if (sleepYes.checked) {
-        sleep = 0.75;    
+        sleep = 0.75;
     }
-    else {sleep = 0.25;}
+    else { sleep = 0.25; }
 
     if (moodGood.checked) {
-        mood = 0.75 ; 
-        storedValuesMood.push("Good");  
+        mood = 0.75;
+        storedValuesMood.push("Good");
     }
     else if (moodNormal.checked) {
         mood = 0.5;
         storedValuesMood.push("Decent");
     }
-    else {mood = 0.25;
+    else {
+        mood = 0.25;
         storedValuesMood.push("Bad");
     }
 
@@ -258,7 +259,7 @@ function predictionFinal () {
     } else {
         resultExercise = exercise * lastValue.fitnessKey;
         resultDiet = diet * lastValue.foodKey;
-        resultSleep  = sleep * lastValue.sleepKey;
+        resultSleep = sleep * lastValue.sleepKey;
         resultMood = mood * lastValue.moodKey;
         var predictedValue = resultExercise + resultDiet + resultSleep + resultMood;
     }
@@ -284,35 +285,52 @@ function predictionFinal () {
 
     console.log(predictedValue);
     console.log(predictedMood);
+}
+
+//This function fetches values from localstorage to generate user history since day 1
+function generateHistory() {
+    var allValues = JSON.parse(localStorage.getItem("all-values"));
+    var prevPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
+    var prevActualMood = JSON.parse(localStorage.getItem("actualMood"));
+    if (allValues != null) {
+        for (i = 0; i < prevActualMood.length; i++) {
+            var calenderBox = document.createElement('div');
+            var dayEl = document.createElement('span');
+            var predictedMoodEl = document.createElement('span');
+            var moodEl = document.createElement('span');
+
+            calenderBox.setAttribute("class", "calendarBox pure-u-1-5");
+            dayEl.setAttribute("class", "boxElements");
+            predictedMoodEl.setAttribute("class", "boxElements");
+            moodEl.setAttribute("class", "boxElements");
+
+            dayEl.textContent = "Day " + (i + 1);
+            predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
+            moodEl.textContent = "Actual Mood: " + prevActualMood[i];
+
+            document.querySelector(".pure-g").appendChild(calenderBox);
+            calenderBox.append(dayEl, predictedMoodEl, moodEl);
+        }
     }
+};
 
-    //This function fetches values from localstorage to generate user history since day 1
-    function generateHistory() {
-        var allValues = JSON.parse(localStorage.getItem("all-values"));
-        var prevPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
-        var prevActualMood =  JSON.parse(localStorage.getItem("actualMood"));
-        if (allValues != null) {
-            for (i = 0; i < prevActualMood.length; i++) {
-                var calenderBox = document.createElement('div');
-                var dayEl = document.createElement('span');
-                var predictedMoodEl = document.createElement('span');
-                var moodEl = document.createElement('span');
-    
-                calenderBox.setAttribute("class","calendarBox pure-u-1-5");
-                dayEl.setAttribute("class","boxElements");
-                predictedMoodEl.setAttribute("class","boxElements");
-                moodEl.setAttribute("class","boxElements");
-    
-                dayEl.textContent = "Day " + (i+1);
-                predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
-                moodEl.textContent = "Actual Mood: " + prevActualMood[i];
-    
-                document.querySelector(".pure-g").appendChild(calenderBox);
-                calenderBox.append(dayEl,predictedMoodEl,moodEl);
-                }
-                }
-    };
+function clearHistory() {
+    document.getElementById("clearHistory").textContent = "";
+};
 
-    function clearHistory () {
-        document.getElementById("clearHistory").textContent = "";
-    };
+
+
+// Generate Random Data    
+let numofDayMetrics = 1;
+let numOfDays = 60;
+let numOfMetrics = numOfDays * numofDayMetrics;
+
+var metricTimes = ['7:45'];
+const repeat = (arr, n) => Array(n).fill(arr).flat();
+var repeatMetricTimes = repeat(metricTimes, numOfDays);
+console.log(repeatMetricTimes);
+
+tmpExercise = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
+tmpDiet = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
+tmpSleep = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
+tmpMood = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 3));
