@@ -2,8 +2,8 @@ var inputName = document.getElementById("name");
 var inputEmail = document.getElementById("email");
 var startBtn = document.getElementById("startBtn");
 var submitBtn = document.getElementById("submit");
-var chartBtn = document.getElementById("chartBtn");
-var chartRBtn = document.getElementById("chartRBtn");
+var chartLinePlotBtn = document.getElementById("chartLinePlotBtn");
+var chartRadarBtn = document.getElementById("chartRadarBtn");
 var clearBtn = document.getElementById("clearStorage");
 var subTitle = document.getElementById('subTitle');
 var landing = document.getElementById("landing");
@@ -102,8 +102,8 @@ function generateQuote() {
 }
 
 //This event listener displays the line chart when the button is clicked
-chartBtn.addEventListener("click", function handleclick() {
-    var lineChart = document.getElementById("myChart");
+chartLinePlotBtn.addEventListener("click", function handleclick() {
+    var lineChart = document.getElementById("chartLinePlot");
     if (lineChart.style.display === "none") {
         lineChart.style.display = "block";
     } else {
@@ -112,8 +112,8 @@ chartBtn.addEventListener("click", function handleclick() {
 })
 
 //This button displays the radar chart when clicked.
-chartRBtn.addEventListener("click", function handleclick() {
-    var radarChart = document.getElementById("myChartR");
+chartRadarBtn.addEventListener("click", function handleclick() {
+    var radarChart = document.getElementById("chartRadar");
     if (radarChart.style.display === "none") {
         radarChart.style.display = "block";
     } else {

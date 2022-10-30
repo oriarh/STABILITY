@@ -1,7 +1,7 @@
 var xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-var myChart = document.getElementById('myChart').getContext('2d');
+var chartLinePlot = document.getElementById('chartLinePlot').getContext('2d');
 
-var myChart = new Chart("myChart", {
+var chartLinePlot = new Chart("chartLinePlot", {
     type: "line",
   data: {
     labels: xValues,
@@ -29,9 +29,9 @@ var myChart = new Chart("myChart", {
 });
 
 var xValuesR = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-var myChartR = document.getElementById('myChartR').getContext('2d');
+var chartRadar = document.getElementById('chartRadar').getContext('2d');
 
-var myChartR = new Chart("myChartR", {
+var chartRadar = new Chart("chartRadar", {
   type: "radar",
 data: {
   labels: xValuesR,
@@ -79,20 +79,20 @@ options: {
 });
 
 function addData(foodVal, fitnessVal, sleepVal, moodVal) {
-  myChart.data.datasets[0].data.push(foodVal);
-  myChart.data.datasets[1].data.push(fitnessVal);
-  myChart.data.datasets[2].data.push(sleepVal);
-  myChart.data.datasets[3].data.push(moodVal);  
+  chartLinePlot.data.datasets[0].data.push(foodVal);
+  chartLinePlot.data.datasets[1].data.push(fitnessVal);
+  chartLinePlot.data.datasets[2].data.push(sleepVal);
+  chartLinePlot.data.datasets[3].data.push(moodVal);  
   
-  myChart.update();
+  chartLinePlot.update();
 }
 
 function addToRadar(foodVal, fitnessVal, sleepVal, moodVal) {
-  myChartR.data.datasets[0].data.push(foodVal);
-  myChartR.data.datasets[1].data.push(fitnessVal);
-  myChartR.data.datasets[2].data.push(sleepVal);
-  myChartR.data.datasets[3].data.push(moodVal);
+  chartRadar.data.datasets[0].data.push(foodVal);
+  chartRadar.data.datasets[1].data.push(fitnessVal);
+  chartRadar.data.datasets[2].data.push(sleepVal);
+  chartRadar.data.datasets[3].data.push(moodVal);
   
-  myChartR.update();
+  chartRadar.update();
 }
 
