@@ -401,12 +401,17 @@ changeTypeString = function (arrayInfo, isBinary) {
 }
 
 
+// This is for Line Plot
 // We could have made this into an object and save space
 var diet60 = changeTypeString(tmpDiet, true);
 var sleep60 = changeTypeString(tmpSleep, true);
 var exercise60 = changeTypeString(tmpExercise, true);
 var mood60 = changeTypeString(tmpMood, false);
 
+
+
+
+// This partition is for the Radar Plot
 // Recent Month Days
 var recentMonthDiet = diet60.slice(-30);
 var recentMonthSleep = sleep60.slice(-30);
@@ -437,6 +442,10 @@ var oldWeekMood = mood60.slice(-14,-7);
 
 
 const average = array => array.reduce((a, b) => a + b) / array.length;
+
+
+
+console.log(average(oldWeekDiet));
 
 
 
