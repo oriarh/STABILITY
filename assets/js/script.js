@@ -413,11 +413,19 @@ var recentMonthSleep = sleep60.slice(-30);
 var recentMonthExercise = exercise60.slice(-30);
 var recentMonthMood = mood60.slice(-30);
 
+// Recent Week Days
+var recentWeekDiet = diet60.slice(-7);
+var recentWeekSleep = sleep60.slice(-7);
+var recentWeekExercise = exercise60.slice(-7);
+var recentWeekMood = mood60.slice(-7);
+
 // Past Month Days
 var oldMonthDiet = diet60.slice(0,30);
 var oldMonthSleep = sleep60.slice(0,30);
 var oldMonthExercise = exercise60.slice(0,30);
 var oldMonthMood = mood60.slice(0,30);
+
+
 
 
 
