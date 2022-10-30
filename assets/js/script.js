@@ -366,3 +366,9 @@ changeTypeString = function (arrayInfo, isBinary) {
 
     return arrayInfoSwitched;
 }
+
+
+var diet60 = changeTypeString(tmpDiet, true);
+var sleep60 = changeTypeString(tmpSleep, true);
+var exercise60 = changeTypeString(tmpExercise, true);
+var mood60 = changeTypeString(tmpMood, false);
