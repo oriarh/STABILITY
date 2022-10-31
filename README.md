@@ -22,3 +22,20 @@ During grad school, I went through a lot of bouts of depression and self-doubt. 
 
 Immanuel posed the idea to Hawa, Osama, and Sean and they agreed to pursue the idea of creating a website that tracts and predicts the mood of someone. We focused on only someone’s diet, exercise, sleep, and mood to create a MVP but we plan on going further on a different projec.
 
+
+## Current Functionality:
+
+
+
+### How the code works?
+### Hidden Markov Models
+### How to use the app?
+
+
+## Future Functionality:
+
+## Acknowledgments
+
+
+## Responsibility Breakdown:
+Faces?????
