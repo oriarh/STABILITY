@@ -319,7 +319,7 @@ function generateHistory() {
     }
 };
 
-=======
+
 //This function fetches values from localstorage to generate user history since day 1
 function generateHistory() {
     var allValues = JSON.parse(localStorage.getItem("all-values"));
@@ -454,7 +454,7 @@ console.log(average(oldWeekDiet));
 //     storedValues(exercise60[59 - i], diet60[59 - i], sleep60[59 - i], mood60[59 - i]);
 //   }
 
->>>>>>> Stashed changes
+
 
 function clearHistory() {
     document.getElementById("clearHistory").textContent = "";
