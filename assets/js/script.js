@@ -32,10 +32,6 @@ startBtn.addEventListener("click", function handleclick() {
 })
 
 
-
-
-
-
 //This function calls out the functions for the quotes & resource APIs and mood prediction on click.
 // This function is commented out because we have only a limited number of quotes we can generate.
 submitBtn.addEventListener("click", function (event) {
@@ -66,20 +62,23 @@ const options = {
 };
 
 function resources(urlHere) {
-    fetch(urlHere, options)
-        .then(function (response) {
-            console.log(response.status);
-            return response.json();
-        }
-        )
-        .then(function (data) {
-            console.log(data);
-            //document.getElementById('title').textContent = data[Math.floor(Math.random()*67)].title;
-            document.getElementById('url').href = data[Math.floor(Math.random() * 67)].url;
-            document.getElementById('url').textContent = data[Math.floor(Math.random() * 67)].url;
-            document.getElementById('source').textContent = data[Math.floor(Math.random() * 67)].source;
-        }
-        )
+    if(moodBad.checked || moodNormal.checked) {
+        fetch(urlHere, options)
+            .then(function (response) {
+                console.log(response.status);
+                return response.json();
+            }
+            )
+            .then(function (data) {
+                console.log(data);
+                //document.getElementById('title').textContent = data[Math.floor(Math.random()*67)].title;
+                document.getElementById('results').hidden = false;
+                document.getElementById('url').href = data[Math.floor(Math.random() * 67)].url;
+                document.getElementById('url').textContent = data[Math.floor(Math.random() * 67)].url;
+                document.getElementById('source').textContent = data[Math.floor(Math.random() * 67)].source;
+            }
+            )
+    }
 
 }
 
@@ -342,8 +341,6 @@ tmpExercise = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random(
 tmpDiet = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
 tmpSleep = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
 tmpMood = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 3));
-
-
 
 // Function to Change data into yes and nos
 changeTypeString = function (arrayInfo, isBinary) {
