@@ -313,34 +313,6 @@ function generateHistory() {
             predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
             moodEl.textContent = "Actual Mood: " + prevActualMood[i];
 
-            document.getElementById("clearHistory").appendChild(calenderBox);
-            calenderBox.append(dayEl, predictedMoodEl, moodEl);
-        }
-    }
-};
-
-
-//This function fetches values from localstorage to generate user history since day 1
-function generateHistory() {
-    var allValues = JSON.parse(localStorage.getItem("all-values"));
-    var prevPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
-    var prevActualMood = JSON.parse(localStorage.getItem("actualMood"));
-    if (allValues != null) {
-        for (i = 0; i < prevActualMood.length; i++) {
-            var calenderBox = document.createElement('div');
-            var dayEl = document.createElement('span');
-            var predictedMoodEl = document.createElement('span');
-            var moodEl = document.createElement('span');
-
-            calenderBox.setAttribute("class", "calendarBox pure-u-1-5");
-            dayEl.setAttribute("class", "boxElements");
-            predictedMoodEl.setAttribute("class", "boxElements");
-            moodEl.setAttribute("class", "boxElements");
-
-            dayEl.textContent = "Day " + (i + 1);
-            predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
-            moodEl.textContent = "Actual Mood: " + prevActualMood[i];
-
             document.querySelector(".pure-g").appendChild(calenderBox);
             calenderBox.append(dayEl, predictedMoodEl, moodEl);
         }
@@ -351,8 +323,12 @@ function clearHistory() {
     document.getElementById("clearHistory").textContent = "";
 };
 
+returnHome.addEventListener("click", function handleclick() {
+    window.location.reload();
+})
 
 
+/
 // Generate Random Data
 let numofDayMetrics = 1;
 let numOfDays = 60;
