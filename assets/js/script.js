@@ -313,10 +313,10 @@ function generateHistory() {
             predictedMoodEl.textContent = "Prediction: " + prevPredictedMood[i];
             moodEl.textContent = "Actual Mood: " + prevActualMood[i];
 
-            document.querySelector(".pure-g").appendChild(calenderBox);
+            document.getElementById("clearHistory").appendChild(calenderBox);
             calenderBox.append(dayEl, predictedMoodEl, moodEl);
         }
-    }
+        }
 };
 
 function clearHistory() {
@@ -325,10 +325,9 @@ function clearHistory() {
 
 returnHome.addEventListener("click", function handleclick() {
     window.location.reload();
-})
+});
 
 
-/
 // Generate Random Data
 let numofDayMetrics = 1;
 let numOfDays = 60;
