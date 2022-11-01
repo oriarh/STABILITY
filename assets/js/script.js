@@ -29,16 +29,10 @@ startBtn.addEventListener("click", function handleclick() {
 })
 
 
-//This function calls out the functions for the quotes & resource APIs and mood prediction on click.
-// This function is commented out because we have only a limited number of quotes we can generate.
-submitBtn.addEventListener("click", function (event) {
-    
-    //resources(wellnessResources);
-    //generateQuote();
 //This is the submit button that records the user input and displays history, predicted moods & resources.
 submitBtn.addEventListener("click", function () {
-    resources(wellnessResources);
-    generateQuote();
+    //resources(wellnessResources);
+    //generateQuote();
     predictionFinal();
 
     localStorage.setItem("predictedMood", JSON.stringify(storedValuesPredictedMood));
