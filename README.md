@@ -41,19 +41,27 @@ Immanuel posed the idea to Hawa, Osama, and Sean and they agreed to pursue the i
 #### 1. Click "Start Now"
 
 Image 1 - front page of website
+<img src = "./Images/website-image-1.JPG" width="35%" height="55%">
 
 #### 2. Answer questions as if it was the end of the day
 
 Image 2 - enter data
+<img src = "./Images/website-image-2.JPG" width="35%" height="55%">
 
 #### 3. v1 If this first time entering data, there will be no predictions
+<img src = "./Images/website-image-3v1.JPG" width="35%" height="55%">
+
+
+
 
 Image 4 - show current state
 
 #### 3. v2 If data has already been entered, there will be predictions
+<img src = "./Images/website-image-3v2.JPG" width="35%" height="55%">
+
 
  Image 5 - show current state and precitions
- 
+ <img src = "./Images/website-image-4.JPG" width="35%" height="55%">
  
  #### 4. Click on "Chart"
  
