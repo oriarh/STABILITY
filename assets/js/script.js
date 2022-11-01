@@ -1,11 +1,8 @@
-var inputName = document.getElementById("name");
-var inputEmail = document.getElementById("email");
 var startBtn = document.getElementById("startBtn");
 var submitBtn = document.getElementById("submit");
 var chartLinePlotBtn = document.getElementById("chartLinePlotBtn");
 var chartRadarBtn = document.getElementById("chartRadarBtn");
 var clearBtn = document.getElementById("clearStorage");
-var subTitle = document.getElementById('subTitle');
 var landing = document.getElementById("landing");
 var section2 = document.getElementById("section2");
 var section3 = document.getElementById("section3");
@@ -14,6 +11,7 @@ var returnHome = document.getElementById("returnHome");
 var storedValuesPredictedMood = [] //This array contains the previous predicted moods - its pushed to localstorage
 var storedValuesMood = [] //This array contains the previous actual moods - its pushed to localstorage
 
+//They pull the previous mood history from the local storage for and push them up to the variables
 if (localStorage.getItem("predictedMood") != null) {
     storedValuesPredictedMood = JSON.parse(localStorage.getItem("predictedMood"));
 }
@@ -22,24 +20,17 @@ if (localStorage.getItem("actualMood") != null) {
     storedValuesMood = JSON.parse(localStorage.getItem("actualMood"));
 };
 
-
+//Start button on the landing page to start the app
 startBtn.addEventListener("click", function handleclick() {
     landing.hidden = true;
-    subTitle.hidden = true;
     section2.hidden = false;
     section3.hidden = true;
     moodHistory.hidden = true;
 })
 
 
-
-
-
-
-//This function calls out the functions for the quotes & resource APIs and mood prediction on click.
-// This function is commented out because we have only a limited number of quotes we can generate.
-submitBtn.addEventListener("click", function (event) {
-    //console.log(inputName.value);
+//This is the submit button that records the user input and displays history, predicted moods & resources.
+submitBtn.addEventListener("click", function () {
     //resources(wellnessResources);
     //generateQuote();
     predictionFinal();
@@ -54,7 +45,7 @@ submitBtn.addEventListener("click", function (event) {
     generateHistory();
 });
 
-// This API fetches a resource - Please do not run this repeatedly as there is a limit to fetches we can make
+//This function uses an API that fetches a wellnessresource for display to the user if the mood is decent or bad.
 wellnessResources = "https://mental-health-info-api.p.rapidapi.com/news/"
 
 const options = {
@@ -66,24 +57,24 @@ const options = {
 };
 
 function resources(urlHere) {
-    fetch(urlHere, options)
-        .then(function (response) {
-            console.log(response.status);
-            return response.json();
-        }
-        )
-        .then(function (data) {
-            console.log(data);
-            //document.getElementById('title').textContent = data[Math.floor(Math.random()*67)].title;
-            document.getElementById('url').href = data[Math.floor(Math.random() * 67)].url;
-            document.getElementById('url').textContent = data[Math.floor(Math.random() * 67)].url;
-            document.getElementById('source').textContent = data[Math.floor(Math.random() * 67)].source;
-        }
-        )
+    if(moodBad.checked || moodNormal.checked) {
+        fetch(urlHere, options)
+            .then(function (response) {
+                return response.json();
+            }
+            )
+            .then(function (data) {
+                document.getElementById('results').hidden = false;
+                document.getElementById('url').href = data[Math.floor(Math.random() * 67)].url;
+                document.getElementById('url').textContent = data[Math.floor(Math.random() * 67)].url;
+                document.getElementById('source').textContent = data[Math.floor(Math.random() * 67)].source;
+            }
+            )
+    }
 
 }
 
-//This API returns a motivational quote - Please do not run this repeatedly as there is a limit to fetches we can make
+//This function uses an API that fetches a wellnessresource for display to the user if the mood is decent or bad.
 const quote = {
     method: 'GET',
     headers: {
@@ -96,7 +87,6 @@ function generateQuote() {
     fetch('https://motivational-content.p.rapidapi.com/quotes/' + Math.floor(Math.random() * 650), quote)
         .then(response => response.json())
         .then(function (data) {
-            console.log(data);
             var quote = document.createElement("p");
             quote.textContent = data.quote;
             document.getElementById("results").appendChild(quote);
@@ -107,12 +97,12 @@ function generateQuote() {
 
 //This event listener displays the line chart when the button is clicked
 chartLinePlotBtn.addEventListener("click", function handleclick() {
-    var lineChart = document.getElementById("chartLinePlot");
+    var myChart = document.getElementById("myChart");
 
-    if (lineChart.hidden === true) {
-        lineChart.hidden = false;
+    if (myChart.hidden === true) {
+        myChart.hidden = false;
     } else {
-        lineChart.hidden = true;
+        myChart.hidden = true;
     }
 })
 
@@ -126,6 +116,7 @@ chartRadarBtn.addEventListener("click", function handleclick() {
     }
 })
 
+//This button clears the local storage
 clearBtn.addEventListener("click", function handleclick() {
     localStorage.clear();
 })
@@ -154,42 +145,35 @@ function storedValues(fitnessValue, foodValue, sleepValue, moodValue) {
         var convertObj = JSON.stringify(valArry);
         localStorage.setItem("all-values", convertObj);
     }
-
-    for (i = 0; i < valuesArry.length; i++) {
-        var inputValue = valuesArry[i];
-    }
-    // console.log(inputValue.foodKey);
-    // console.log(inputValue.fitnessKey);
-    // console.log(inputValue.sleepKey);
-    // console.log(inputValue.moodKey);
-    addData(inputValue.fitnessKey, inputValue.foodKey, inputValue.sleepKey, inputValue.moodKey);
-    addToRadar(inputValue.moodKey, inputValue.sleepKey, inputValue.foodKey, inputValue.fitnessKey);
 }
 
+//function to store chart values for 7 days
+function chartValues(fitnessValue, foodValue, sleepValue, moodValue) {
+    var chartArry = [];
+    var retrievedChartValues = localStorage.getItem("chart-values");
 
-//Immanuel's formula for prediction
-// if its a yes 0.75 and if its a no 0.25
-// var predictedMood;
-// var food = $(inputFood);
-// var fitness = $(inputFitness);
-// var sleep = $(inputSleep);
-// var Mood = $(inputMood);
-// let coefFood = [0.25, 0.75];
-// let coefFitness = [0.25, 0.75];
-// let coatSleep = [0.25, 0.75];
-// let coefMood = [0.25, 0.5, 0.75];
-// let resultFood = food * coefFood[placeHolder];//what we put in the placeholder is gonna be based on the previous history that we well fetch from local storage
-// let resultFitness = fitness * coeffitness[placeHolder];
-// let resultsleep = sleep * coefDleep[placeHolder];
-// let resultMood = Mood * coefMood[placeHolder];
-// let predictedValue = resultFood + resultFitness + resultMood + resultSleep;
-// if (predictedValue < 0.35) {
-//     predictedMood = 'Bad';
-// } else if (predictedValue < 0.55 && predictedValue >= 0.35) {
-//     predictedMood = 'Decent';
-// } else if (predictedValue > 0.55) {
-//     predictedMood = 'Good ';
-// }
+    if (retrievedChartValues) {
+        chartArry = JSON.parse(retrievedChartValues);
+    }
+
+    var objChartValues = {
+        fitChartKey : fitnessValue,
+        foodChartKey : foodValue,
+        sleepChartKey : sleepValue,
+        moodChartKey : moodValue
+    }
+
+    if (chartArry.length > 6) {
+        chartArry.shift();
+        chartArry.push(objChartValues);
+    } else {
+        chartArry.push(objChartValues);
+    }
+   
+    localStorage.setItem("chart-values", JSON.stringify(chartArry));
+    
+    addData(chartArry)
+}
 
 //The following code fetches the users response and previous data from localStorage to predict the next mood.
 var predictedMood;
@@ -218,8 +202,6 @@ function predictionFinal() {
             var lastValue = allValues[allValues.length - 1]
         }
     }
-
-    console.log(lastValue);
 
     if (exerciseYes.checked) {
         exercise = 0.75;
@@ -250,11 +232,7 @@ function predictionFinal() {
     }
 
     storedValues(exercise, diet, sleep, mood);
-
-    console.log(exercise);
-    console.log(diet);
-    console.log(sleep);
-    console.log(mood);
+    chartValues(exercise, diet, sleep, mood);
 
     if (lastValue == null) {
         var resultExercise = exercise;
@@ -269,13 +247,6 @@ function predictionFinal() {
         var predictedValue = resultExercise + resultDiet + resultSleep + resultMood;
     }
 
-
-    console.log(resultExercise);
-    console.log(resultDiet);
-    console.log(resultSleep);
-    console.log(resultMood);
-
-
     if (predictedValue < 0.35) {
         predictedMood = 'Bad';
     } else if (predictedValue < 0.55 && predictedValue >= 0.35) {
@@ -287,9 +258,6 @@ function predictionFinal() {
     }
 
     storedValuesPredictedMood.push(predictedMood);
-
-    console.log(predictedValue);
-    console.log(predictedMood);
 }
 
 //This function fetches values from localstorage to generate user history since day 1
@@ -319,16 +287,18 @@ function generateHistory() {
         }
 };
 
+//Function the Div element where the history boxes are appended. Otherwise the submit was printing in addition to the previous values printed
 function clearHistory() {
     document.getElementById("clearHistory").textContent = "";
 };
 
+//This function takes the user back to the landing page
 returnHome.addEventListener("click", function handleclick() {
     window.location.reload();
 });
 
-
-// Generate Random Data
+//Future development Initiatives for the web application 
+//Generate Random Data for future development of charts.
 let numofDayMetrics = 1;
 let numOfDays = 60;
 let numOfMetrics = numOfDays * numofDayMetrics;
@@ -336,14 +306,11 @@ let numOfMetrics = numOfDays * numofDayMetrics;
 var metricTimes = ['7:45'];
 const repeat = (arr, n) => Array(n).fill(arr).flat();
 var repeatMetricTimes = repeat(metricTimes, numOfDays);
-console.log(repeatMetricTimes);
 
 tmpExercise = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
 tmpDiet = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
 tmpSleep = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 2));
 tmpMood = Array.from({ length: numOfMetrics }, () => Math.floor(Math.random() * 3));
-
-
 
 // Function to Change data into yes and nos
 changeTypeString = function (arrayInfo, isBinary) {
@@ -371,20 +338,15 @@ changeTypeString = function (arrayInfo, isBinary) {
         }
     }
 
-
     return arrayInfoSwitched;
 }
 
 
-// This is for Line Plot
-// We could have made this into an object and save space
+// This is for Line Plot for future development
 var diet60 = changeTypeString(tmpDiet, true);
 var sleep60 = changeTypeString(tmpSleep, true);
 var exercise60 = changeTypeString(tmpExercise, true);
 var mood60 = changeTypeString(tmpMood, false);
-
-
-
 
 // This partition is for the Radar Plot
 // Recent Month Days
@@ -411,26 +373,9 @@ var oldWeekSleep = sleep60.slice(-14,-7);
 var oldWeekExercise = exercise60.slice(-14,-7);
 var oldWeekMood = mood60.slice(-14,-7);
 
-
-
-
-
-
 const average = array => array.reduce((a, b) => a + b) / array.length;
-
-
-
-console.log(average(oldWeekDiet));
-
-
 
 // Plotting based on olddata
 // for (let i = 0; i < tmpNumOfDays; i++) {
 //     storedValues(exercise60[59 - i], diet60[59 - i], sleep60[59 - i], mood60[59 - i]);
 //   }
-
-
-
-function clearHistory() {
-    document.getElementById("clearHistory").textContent = "";
-};

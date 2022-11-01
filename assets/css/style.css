@@ -78,12 +78,13 @@ img{
 /*3rd page*/
 
 .calendarBox {
-    border: 1px solid black;
-    display: block;
+    border: 1px solid gray;
     height: 85px;
     text-align: center;
     margin: 4px;
     padding: 8px;
+    background-color: wheat;
+    border-radius: 2rem;
 }
 
 .weekBox {
@@ -121,10 +122,19 @@ img{
     border: 1px solid black; 
     background-color: #c938a7;
     color: white;
+    cursor: pointer;
+}
+
+.btnStyle:hover {
+    background-color: #f600bc;
 }
 
 .results {
-    margin-left: 20px;
+    margin: 20px;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 35px;
+    background-color: wheat;
 }
 
 .charts {

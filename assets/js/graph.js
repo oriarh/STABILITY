@@ -1,33 +1,83 @@
-var xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-var chartLinePlot = document.getElementById('chartLinePlot').getContext('2d');
-
-var chartLinePlot = new Chart("chartLinePlot", {
-    type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{
-      data: [],
+// setup block for line graph
+var data = {
+  labels : ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday"],
+  datasets: [{
+      label: 'exercise',
+      data: [.75, .75, .25, .25, .75, .75],
       borderColor: "red",
-      fill: false
-    },{
-      data2: [],
-      borderColor: "green",
-      fill: false
-    },{
-      data: [],
+      fill: false,
+      borderWidth: 2
+  },{ 
+    label: 'food',
+    data: [.75, .25, .75, .25, .75, .75],
       borderColor: "blue",
-      fill: false
-    },{
-      data: [],
+      fill: false,
+      borderWidth: 2
+  },{
+    label: 'sleep',
+    data: [.75, .75, .25, .25, .25, .75],
+      borderColor: "green",
+      fill: false,
+      borderWidth: 2
+  },{
+    label: 'mood',
+    data: [.75, .75, .50, .25, .25, .50],
       borderColor: "purple",
-      fill: false
-    }]
-  },
+      fill: false,
+      borderWidth: 2
+  }]
+};
+// config block
+var config = {
+type: 'line',
+  data,
   options: {
-    legend: {display: false}
+      scales: {
+          // xAxis: {
+          //   display: true,
+          //   parsing: false,
+          //   type: 'time',
+          //   time: {
+          //     unit: 'day'
+          //   }
+          // },
+          y: {
+              beginAtZero: true
+          }
+      }
   }
-});
+};
 
+// render / init block
+var myChart = new Chart(
+document.getElementById('myChart'),
+config
+);
+
+function addData(arryVals) {
+var dayOfWeekName = new Date().toLocaleString(
+  'default', {weekday: 'long'}
+)
+console.log(dayOfWeekName);
+
+for (i = 0; i < arryVals.length; i++) {
+  myChart.data.datasets[0].data.push(arryVals[i].fitChartKey);
+  myChart.data.datasets[1].data.push(arryVals[i].foodChartKey);
+  myChart.data.datasets[2].data.push(arryVals[i].sleepChartKey);
+  myChart.data.datasets[3].data.push(arryVals[i].moodChartKey);
+  myChart.data.labels.push(dayOfWeekName);
+  console.log(arryVals[i].foodChartKey);
+  console.log(arryVals[i].fitChartKey);
+  console.log(arryVals[i].sleepChartKey);
+  console.log(arryVals[i].moodChartKey);
+}
+
+
+ myChart.update();
+console.log(myChart.data.datasets);
+}
+
+// Chart for radar
 var xValuesR = ["Mood","Diet","Exercise","Sleep"];
 var chartRadar = document.getElementById('chartRadar').getContext('2d');
 
@@ -78,14 +128,7 @@ options: {
 }
 });
 
-function addData(foodVal, fitnessVal, sleepVal, moodVal) {
-  chartLinePlot.data.datasets[0].data.push(foodVal);
-  chartLinePlot.data.datasets[1].data.push(fitnessVal);
-  chartLinePlot.data.datasets[2].data.push(sleepVal);
-  chartLinePlot.data.datasets[3].data.push(moodVal);  
-  
-  chartLinePlot.update();
-}
+
 
 function addToRadar(foodVal, fitnessVal, sleepVal, moodVal) {
   chartRadar.data.datasets[0].data.push(foodVal);
