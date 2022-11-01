@@ -31,9 +31,37 @@ Immanuel posed the idea to Hawa, Osama, and Sean and they agreed to pursue the i
 ### How the code works?
 ### Hidden Markov Models
 <img src = "STABILITY/Images/model-1.JPG" width="35%" height="55%">
+
 <img src = "STABILITY/Images/model-2.JPG" width="35%" height="55%">
+
 <img src = "STABILITY/Images/model-3.JPG" width="35%" height="55%">
+
 ### How to use the app?
+
+#### 1. Click "Start Now"
+
+Image 1 - front page of website
+
+#### 2. Answer questions as if it was the end of the day
+
+Image 2 - enter data
+
+#### 3. v1 If this first time entering data, there will be no predictions
+
+Image 4 - show current state
+
+#### 3. v2 If data has already been entered, there will be predictions
+
+ Image 5 - show current state and precitions
+ 
+ 
+ #### 4. Click on "Chart"
+ 
+ 
+ 
+ #### 5. Click on "Clear History"
+ 
+ 
 
 
 ## Future Functionality:
