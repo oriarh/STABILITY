@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <title>Stability</title>
 
 </head>
 <body id="body">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
     <header>
         <h1><p style="text-align:center">STABILITY</p></h1>
         <h2 id="subTitle"><p style="text-align:center"></p></h2>
@@ -66,8 +70,8 @@
     </div>
 
     <div class="charts">
-        <canvas class="chartLine" id="chartLinePlot" style="width:100%;max-width:1200px " hidden></canvas>
-        <canvas id="chartRadar" style="width:100%;max-width:1200px" hidden></canvas>
+        <canvas class="myChart" id="myChart" style="width:100%;max-width:700px " hidden></canvas>
+        <canvas id="chartRadar" style="width:100%;max-width:700px" hidden></canvas>
     </div>
         
     <div class="chartButtons">
