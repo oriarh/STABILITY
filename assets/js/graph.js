@@ -1,27 +1,27 @@
 // setup block for line graph
 var data = {
-  labels : ["something"],
+  labels : ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday"],
   datasets: [{
       label: 'exercise',
-      data: [1],
+      data: [.75, .75, .25, .25, .75, .75],
       borderColor: "red",
       fill: false,
       borderWidth: 2
   },{ 
     label: 'food',
-    data: [],
+    data: [.75, .25, .75, .25, .75, .75],
       borderColor: "blue",
       fill: false,
       borderWidth: 2
   },{
     label: 'sleep',
-    data: [],
+    data: [.75, .75, .25, .25, .25, .75],
       borderColor: "green",
       fill: false,
       borderWidth: 2
   },{
     label: 'mood',
-    data: [],
+    data: [.75, .75, .50, .25, .25, .50],
       borderColor: "purple",
       fill: false,
       borderWidth: 2
@@ -67,6 +67,9 @@ for (i = 0; i < arryVals.length; i++) {
   myChart.data.datasets[3].data.push(arryVals[i].moodChartKey);
   myChart.data.labels.push(dayOfWeekName);
   console.log(arryVals[i].foodChartKey);
+  console.log(arryVals[i].fitChartKey);
+  console.log(arryVals[i].sleepChartKey);
+  console.log(arryVals[i].moodChartKey);
 }
 
 

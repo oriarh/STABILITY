@@ -35,7 +35,7 @@ startBtn.addEventListener("click", function handleclick() {
 //This function calls out the functions for the quotes & resource APIs and mood prediction on click.
 // This function is commented out because we have only a limited number of quotes we can generate.
 submitBtn.addEventListener("click", function (event) {
-    //console.log(inputName.value);
+    
     //resources(wellnessResources);
     //generateQuote();
     predictionFinal();
