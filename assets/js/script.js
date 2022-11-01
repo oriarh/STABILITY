@@ -23,7 +23,6 @@ if (localStorage.getItem("actualMood") != null) {
 //Start button on the landing page to start the app
 startBtn.addEventListener("click", function handleclick() {
     landing.hidden = true;
-    subTitle.hidden = true;
     section2.hidden = false;
     section3.hidden = true;
     moodHistory.hidden = true;

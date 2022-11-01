@@ -3,25 +3,25 @@ var data = {
   labels : ["something"],
   datasets: [{
       label: 'exercise',
-      data: [1],
+      data: [2],
       borderColor: "red",
       fill: false,
       borderWidth: 2
   },{ 
     label: 'food',
-    data: [],
+    data: [2],
       borderColor: "blue",
       fill: false,
       borderWidth: 2
   },{
     label: 'sleep',
-    data: [],
+    data: [2],
       borderColor: "green",
       fill: false,
       borderWidth: 2
   },{
     label: 'mood',
-    data: [],
+    data: [2],
       borderColor: "purple",
       fill: false,
       borderWidth: 2
