@@ -30,7 +30,7 @@ Immanuel posed the idea to Hawa, Osama, and Sean and they agreed to pursue the i
 
 ### How the code works?
 ### Hidden Markov Models
-<img src = "/Images/model-1.jpg" width="35%" height="55%">
+<img src = "STABILITY/Images/model-1.jpg" width="35%" height="55%">
 ### How to use the app?
 
 
