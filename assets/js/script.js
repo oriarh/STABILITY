@@ -106,12 +106,12 @@ function generateQuote() {
 
 //This event listener displays the line chart when the button is clicked
 chartLinePlotBtn.addEventListener("click", function handleclick() {
-    var lineChart = document.getElementById("chartLinePlot");
+    var myChart = document.getElementById("myChart");
 
-    if (lineChart.hidden === true) {
-        lineChart.hidden = false;
+    if (myChart.hidden === true) {
+        myChart.hidden = false;
     } else {
-        lineChart.hidden = true;
+        myChart.hidden = true;
     }
 })
 
@@ -157,38 +157,41 @@ function storedValues(fitnessValue, foodValue, sleepValue, moodValue) {
     for (i = 0; i < valuesArry.length; i++) {
         var inputValue = valuesArry[i];
     }
-    // console.log(inputValue.foodKey);
-    // console.log(inputValue.fitnessKey);
-    // console.log(inputValue.sleepKey);
-    // console.log(inputValue.moodKey);
-    addData(inputValue.fitnessKey, inputValue.foodKey, inputValue.sleepKey, inputValue.moodKey);
-    addToRadar(inputValue.moodKey, inputValue.sleepKey, inputValue.foodKey, inputValue.fitnessKey);
+    console.log(inputValue.foodKey);
+    console.log(inputValue.fitnessKey);
+    console.log(inputValue.sleepKey);
+    console.log(inputValue.moodKey);
+    //addData(inputValue.fitnessKey, inputValue.foodKey, inputValue.sleepKey, inputValue.moodKey);
+    //addToRadar(inputValue.moodKey, inputValue.sleepKey, inputValue.foodKey, inputValue.fitnessKey);
 }
 
+//function to store chart values for 7 days
+function chartValues(fitnessValue, foodValue, sleepValue, moodValue) {
+    var chartArry = [];
+    var retrievedChartValues = localStorage.getItem("chart-values");
 
-//Immanuel's formula for prediction
-// if its a yes 0.75 and if its a no 0.25
-// var predictedMood;
-// var food = $(inputFood);
-// var fitness = $(inputFitness);
-// var sleep = $(inputSleep);
-// var Mood = $(inputMood);
-// let coefFood = [0.25, 0.75];
-// let coefFitness = [0.25, 0.75];
-// let coatSleep = [0.25, 0.75];
-// let coefMood = [0.25, 0.5, 0.75];
-// let resultFood = food * coefFood[placeHolder];//what we put in the placeholder is gonna be based on the previous history that we well fetch from local storage
-// let resultFitness = fitness * coeffitness[placeHolder];
-// let resultsleep = sleep * coefDleep[placeHolder];
-// let resultMood = Mood * coefMood[placeHolder];
-// let predictedValue = resultFood + resultFitness + resultMood + resultSleep;
-// if (predictedValue < 0.35) {
-//     predictedMood = 'Bad';
-// } else if (predictedValue < 0.55 && predictedValue >= 0.35) {
-//     predictedMood = 'Decent';
-// } else if (predictedValue > 0.55) {
-//     predictedMood = 'Good ';
-// }
+    if (retrievedChartValues) {
+        chartArry = JSON.parse(retrievedChartValues);
+    }
+
+    var objChartValues = {
+        fitChartKey : fitnessValue,
+        foodChartKey : foodValue,
+        sleepChartKey : sleepValue,
+        moodChartKey : moodValue
+    }
+
+    if (chartArry.length > 6) {
+        chartArry.shift();
+        chartArry.push(objChartValues);
+    } else {
+        chartArry.push(objChartValues);
+    }
+   
+    localStorage.setItem("chart-values", JSON.stringify(chartArry));
+    
+    addData(chartArry)
+}
 
 //The following code fetches the users response and previous data from localStorage to predict the next mood.
 var predictedMood;
@@ -249,6 +252,7 @@ function predictionFinal() {
     }
 
     storedValues(exercise, diet, sleep, mood);
+    chartValues(exercise, diet, sleep, mood);
 
     console.log(exercise);
     console.log(diet);
