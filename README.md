@@ -41,15 +41,15 @@ Immanuel posed the idea to Hawa, Osama, and Sean and they agreed to pursue the i
 #### 1. Click "Start Now"
 
 Image 1 - front page of website
-<img src = "./Images/website-image-1.JPG" width="35%" height="55%">
+<img src = "./Images/website-image-1.jpg" width="35%" height="55%">
 
 #### 2. Answer questions as if it was the end of the day
 
 Image 2 - enter data
-<img src = "./Images/website-image-2.JPG" width="35%" height="55%">
+<img src = "./Images/website-image-2.jpg" width="35%" height="55%">
 
 #### 3. v1 If this first time entering data, there will be no predictions
-<img src = "./Images/website-image-3v1.JPG" width="35%" height="55%">
+<img src = "./Images/website-image-3v1.jpg" width="35%" height="55%">
 
 
 
@@ -57,25 +57,32 @@ Image 2 - enter data
 Image 4 - show current state
 
 #### 3. v2 If data has already been entered, there will be predictions
-<img src = "./Images/website-image-3v2.JPG" width="35%" height="55%">
+<img src = "./Images/website-image-3v2.jpg" width="35%" height="55%">
 
 
  Image 5 - show current state and precitions
- <img src = "./Images/website-image-4.JPG" width="35%" height="55%">
+ <img src = "./Images/website-image-4.jpg" width="35%" height="55%">
  
  #### 4. Click on "Chart"
  
+ <img src = "./Images/website-image-4.jpg" width="35%" height="55%">
  
+ ## Installation
  
- #### 5. Click on "Clear History"
+No installation is required t view the webpage. Here is a link to the deployed website:
+https://oriarh.github.io/STABILITY/ 
  
- 
-
 
 ## Future Functionality:
 
+In the future this app will include more daily variables to allow the viewer to track and monitor more factor that could affect their quality of life. The frequency of user input will also be increased to provide a more robust Hidden Markoc Model. More charts will be added to allow the viewer more options to compare previous data with current data. A live calendar with daily updates will also provide a better user experience when viewing the mood history and predictions. 
+
 ## Acknowledgments
 
+Team memebers: 
+Immanuel Williams - team leader
+Osama Pervez Riarh
+Hawa Fallay
+Sean Bristol-Lee
 
-## Responsibility Breakdown:
-Faces?????
+
