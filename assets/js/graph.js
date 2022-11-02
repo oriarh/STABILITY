@@ -1,27 +1,27 @@
 // setup block for line graph
 var data = {
-  labels : ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday"],
+  labels : [],
   datasets: [{
       label: 'exercise',
-      data: [.75, .75, .25, .25, .75, .75],
+      data: [],
       borderColor: "red",
       fill: false,
       borderWidth: 2
   },{ 
     label: 'food',
-    data: [.75, .25, .75, .25, .75, .75],
+    data: [],
       borderColor: "blue",
       fill: false,
       borderWidth: 2
   },{
     label: 'sleep',
-    data: [.75, .75, .25, .25, .25, .75],
+    data: [],
       borderColor: "green",
       fill: false,
       borderWidth: 2
   },{
     label: 'mood',
-    data: [.75, .75, .50, .25, .25, .50],
+    data: [],
       borderColor: "purple",
       fill: false,
       borderWidth: 2
@@ -33,14 +33,6 @@ type: 'line',
   data,
   options: {
       scales: {
-          // xAxis: {
-          //   display: true,
-          //   parsing: false,
-          //   type: 'time',
-          //   time: {
-          //     unit: 'day'
-          //   }
-          // },
           y: {
               beginAtZero: true
           }
@@ -72,12 +64,11 @@ for (i = 0; i < arryVals.length; i++) {
   console.log(arryVals[i].moodChartKey);
 }
 
-
  myChart.update();
 console.log(myChart.data.datasets);
 }
 
-// Chart for radar
+// Chart for radar. Needs to be reworked. Currently not functioning.
 var xValuesR = ["Mood","Diet","Exercise","Sleep"];
 var chartRadar = document.getElementById('chartRadar').getContext('2d');
 
